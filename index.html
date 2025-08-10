@@ -1,24 +1,61 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <!-- Header -->
-    <?php include 'header.html'; ?>
+<!-- ===== HEADER START ===== -->
+<header>
+  <div class="logo" onclick="window.location.href='index.html'">
+    مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة
+  </div>
+  <nav>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <ul id="menu">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="bilder.html">الصور</a></li>
+      <li><a href="kontakt.html">التواصل</a></li>
+      <li><a href="hausaufgaben.html">الواجبات</a></li>
+    </ul>
+  </nav>
+</header>
+<!-- ===== HEADER END ===== -->
 
-    <main>
-        <h2>مرحباً بكم</h2>
-        <p>نادٍ ثقافي عربي تأسس عام ٢٠٠٥ في مدينة شتوتغارت بهدف تعليم الناشئة للغة العربية بمختلف علومها وفنونها</p>
-    </main>
+<!-- Zwei Banner unter dem Header -->
+<div class="banners-container">
+  <div class="banner">
+    إعلان هام: التسجيل للعام الدراسي الجديد مفتوح الآن!
+  </div>
+  <div class="banner">
+    نادٍ ثقافي عربي تأسس عام ٢٠٠٥ في مدينة شتوتغارت بهدف تعليم الناشئة للغة العربية بمختلف علومها وفنونها
+  </div>
+</div>
 
-    <!-- Footer -->
-    <?php include 'footer.html'; ?>
+<main>
+  <h1>مرحباً بكم في مدرسة الرافدين العربية</h1>
+  <p>هنا يمكنكم التعرف على المدرسة، أنشطتها، ومتابعة آخر الأخبار.</p>
+</main>
 
-    <script src="script.js"></script>
+<!-- ===== FOOTER START ===== -->
+<footer>
+  <div class="social-icons">
+    <a href="https://www.facebook.com/people/Arrafidain-Arabische-Schule/pfbid02Sf3yXTFtQ25GpouhLvenn1pvYtbqaXgrEPsHdbEyHuVjnCQhTk4iRqsqPDatiutcl/" target="_blank">
+      <img src="logo/Facebook_Logo_Secondary.png" alt="Facebook" />
+    </a>
+    <a href="https://bit.ly/3A1J1mK" target="_blank">
+      <img src="logo/Instagram_Logo_Secondary.png" alt="Instagram" />
+    </a>
+    <a href="https://t.me/arrafidainschule" target="_blank">
+      <img src="logo/WhatsApp_Logo_Secondary.png" alt="Telegram" />
+    </a>
+  </div>
+</footer>
+<!-- ===== FOOTER END ===== -->
+
+<script src="script.js"></script>
 </body>
 </html>
