@@ -1,93 +1,31 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>اتصل بنا</title>
-<style>
-    body {
-        font-family: 'Tahoma', sans-serif;
-        direction: rtl;
-        text-align: right;
-        background-color: #f9f9f9;
-        margin: 0;
-        padding-bottom: 80px; /* Platz für Footer */
-    }
-
-    /* Social Icons Bereich oben */
-    .social-links {
-        margin-top: 20px;
-        text-align: right;
-    }
-    .social-links a {
-        display: inline-block;
-        font-size: 18px;
-        margin: 5px 10px;
-        color: #003366;
-        text-decoration: none;
-    }
-
-    /* Telefonnummern */
-    .phone-list a {
-        font-size: 18px;
-        color: #003366;
-        text-decoration: none;
-    }
-    .phone-list a:hover {
-        text-decoration: underline;
-    }
-
-    /* Footer-Banner */
-    .footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        background-color: #003366;
-        padding: 10px 0;
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-    }
-
-    .footer a img {
-        width: 40px;
-        height: 40px;
-        object-fit: contain;
-        transition: transform 0.3s;
-    }
-    .footer a img:hover {
-        transform: scale(1.1);
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا - مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>وسائل التواصل</h2>
+    <?php include 'header.html'; ?>
 
-<div class="social-links">
-    <p><strong>تليجرام:</strong> <a href="https://t.me/arrafidainschule" target="_blank">اضغط هنا</a></p>
-    <p><strong>فيسبوك:</strong> <a href="https://www.facebook.com/people/Arrafidain-Arabische-Schule/pfbid02Sf3yXTFtQ25GpouhLvenn1pvYtbqaXgrEPsHdbEyHuVjnCQhTk4iRqsqPDatiutcl/" target="_blank">اضغط هنا</a></p>
-    <p><strong>إنستغرام:</strong> <a href="https://bit.ly/3A1J1mK" target="_blank">اضغط هنا</a></p>
-</div>
+    <main>
+        <h2>اتصل بنا</h2>
+        <p>للاستفسار والتسجيل، يمكنكم الاتصال على الأرقام التالية:</p>
+        <p><a href="tel:01628762095">‏01628762095</a></p>
+        <p><a href="tel:01799883220">‏01799883220</a></p>
 
-<h3>أرقام الهاتف:</h3>
-<ul class="phone-list">
-    <li><a href="tel:01628762095">‏01628762095</a></li>
-    <li><a href="tel:01799883220">‏01799883220</a></li>
-</ul>
+        <h3>تابعونا على وسائل التواصل الاجتماعي:</h3>
+        <p>
+            <a href="https://t.me/arrafidainschule" target="_blank">Telegram</a> |
+            <a href="https://www.facebook.com/people/Arrafidain-Arabische-Schule/pfbid02Sf3yXTFtQ25GpouhLvenn1pvYtbqaXgrEPsHdbEyHuVjnCQhTk4iRqsqPDatiutcl/" target="_blank">Facebook</a> |
+            <a href="https://bit.ly/3A1J1mK" target="_blank">Instagram</a>
+        </p>
+    </main>
 
-<!-- Footer mit Social Logos -->
-<div class="footer">
-    <a href="https://www.facebook.com/people/Arrafidain-Arabische-Schule/pfbid02Sf3yXTFtQ25GpouhLvenn1pvYtbqaXgrEPsHdbEyHuVjnCQhTk4iRqsqPDatiutcl/" target="_blank">
-        <img src="logo/Facebook_Logo_Secondary.png" alt="Facebook">
-    </a>
-    <a href="https://bit.ly/3A1J1mK" target="_blank">
-        <img src="logo/Instagram_Logo_Secondary.png" alt="Instagram">
-    </a>
-    <a href="https://wa.me/491628762095" target="_blank">
-        <img src="logo/WhatsApp_Logo_Secondary.png" alt="WhatsApp">
-    </a>
-</div>
+    <?php include 'footer.html'; ?>
 
+    <script src="script.js"></script>
 </body>
 </html>
