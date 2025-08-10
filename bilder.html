@@ -1,84 +1,36 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>الصور</title>
-<style>
-    body {
-        font-family: 'Tahoma', sans-serif;
-        direction: rtl;
-        text-align: right;
-        background-color: #f9f9f9;
-        padding: 20px;
-    }
-
-    /* Galerie */
-    .gallery {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-    }
-
-    .gallery img {
-        width: 100%;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: transform 0.3s;
-    }
-
-    .gallery img:hover {
-        transform: scale(1.05);
-    }
-
-    /* Lightbox */
-    .lightbox {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.8);
-        justify-content: center;
-        align-items: center;
-    }
-
-    .lightbox img {
-        max-width: 90%;
-        max-height: 90%;
-        border-radius: 10px;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصور - مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>صور من أنشطة المدرسة</h2>
+    <?php include 'header.html'; ?>
 
-<div class="gallery">
-    <img src="bilder/bild1.jpg" alt="Bild 1" onclick="openLightbox(this.src)">
-    <img src="bilder/bild2.jpg" alt="Bild 2" onclick="openLightbox(this.src)">
-    <img src="bilder/bild3.jpg" alt="Bild 3" onclick="openLightbox(this.src)">
-    <img src="bilder/bild4.jpg" alt="Bild 4" onclick="openLightbox(this.src)">
-    <img src="bilder/bild5.jpg" alt="Bild 5" onclick="openLightbox(this.src)">
-    <img src="bilder/bild6.jpg" alt="Bild 6" onclick="openLightbox(this.src)">
-</div>
+    <main>
+        <h2>معرض الصور</h2>
+        <div class="gallery">
+            <a href="#img1"><img src="bilder/bild1.jpg" alt="Bild 1"></a>
+            <a href="#img2"><img src="bilder/bild2.jpg" alt="Bild 2"></a>
+            <a href="#img3"><img src="bilder/bild3.jpg" alt="Bild 3"></a>
+        </div>
 
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" src="" alt="">
-</div>
+        <div id="img1" class="lightbox">
+            <img src="bilder/bild1.jpg" alt="">
+        </div>
+        <div id="img2" class="lightbox">
+            <img src="bilder/bild2.jpg" alt="">
+        </div>
+        <div id="img3" class="lightbox">
+            <img src="bilder/bild3.jpg" alt="">
+        </div>
+    </main>
 
-<script>
-function openLightbox(src) {
-    document.getElementById("lightbox-img").src = src;
-    document.getElementById("lightbox").style.display = "flex";
-}
+    <?php include 'footer.html'; ?>
 
-function closeLightbox() {
-    document.getElementById("lightbox").style.display = "none";
-}
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
