@@ -10,24 +10,84 @@
         direction: rtl;
         text-align: right;
         background-color: #f9f9f9;
-        padding: 20px;
+        margin: 0;
+        padding-bottom: 80px; /* Platz für Footer */
     }
-    a {
+
+    /* Social Icons Bereich oben */
+    .social-links {
+        margin-top: 20px;
+        text-align: right;
+    }
+    .social-links a {
+        display: inline-block;
+        font-size: 18px;
+        margin: 5px 10px;
         color: #003366;
         text-decoration: none;
+    }
+
+    /* Telefonnummern */
+    .phone-list a {
+        font-size: 18px;
+        color: #003366;
+        text-decoration: none;
+    }
+    .phone-list a:hover {
+        text-decoration: underline;
+    }
+
+    /* Footer-Banner */
+    .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #003366;
+        padding: 10px 0;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .footer a img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        transition: transform 0.3s;
+    }
+    .footer a img:hover {
+        transform: scale(1.1);
     }
 </style>
 </head>
 <body>
+
 <h2>وسائل التواصل</h2>
-<p><strong>تليجرام:</strong> <a href="https://t.me/arrafidainschule">اضغط هنا</a></p>
-<p><strong>فيسبوك:</strong> <a href="https://www.facebook.com/people/Arrafidain-Arabische-Schule/pfbid02Sf3yXTFtQ25GpouhLvenn1pvYtbqaXgrEPsHdbEyHuVjnCQhTk4iRqsqPDatiutcl/">اضغط هنا</a></p>
-<p><strong>إنستغرام:</strong> <a href="https://bit.ly/3A1J1mK">اضغط هنا</a></p>
+
+<div class="social-links">
+    <p><strong>تليجرام:</strong> <a href="https://t.me/arrafidainschule" target="_blank">اضغط هنا</a></p>
+    <p><strong>فيسبوك:</strong> <a href="https://www.facebook.com/people/Arrafidain-Arabische-Schule/pfbid02Sf3yXTFtQ25GpouhLvenn1pvYtbqaXgrEPsHdbEyHuVjnCQhTk4iRqsqPDatiutcl/" target="_blank">اضغط هنا</a></p>
+    <p><strong>إنستغرام:</strong> <a href="https://bit.ly/3A1J1mK" target="_blank">اضغط هنا</a></p>
+</div>
 
 <h3>أرقام الهاتف:</h3>
-<ul>
+<ul class="phone-list">
     <li><a href="tel:01628762095">‏01628762095</a></li>
     <li><a href="tel:01799883220">‏01799883220</a></li>
 </ul>
+
+<!-- Footer mit Social Logos -->
+<div class="footer">
+    <a href="https://www.facebook.com/people/Arrafidain-Arabische-Schule/pfbid02Sf3yXTFtQ25GpouhLvenn1pvYtbqaXgrEPsHdbEyHuVjnCQhTk4iRqsqPDatiutcl/" target="_blank">
+        <img src="logo/Facebook_Logo_Secondary.png" alt="Facebook">
+    </a>
+    <a href="https://bit.ly/3A1J1mK" target="_blank">
+        <img src="logo/Instagram_Logo_Secondary.png" alt="Instagram">
+    </a>
+    <a href="https://wa.me/491628762095" target="_blank">
+        <img src="logo/WhatsApp_Logo_Secondary.png" alt="WhatsApp">
+    </a>
+</div>
+
 </body>
 </html>
