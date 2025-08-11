@@ -33,6 +33,7 @@ body {
   cursor: pointer;
   text-decoration: none;
   color: white;
+  direction: ltr;
 }
 
 .school-name {
