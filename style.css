@@ -23,6 +23,9 @@ header {
   align-items: center;
   padding: 10px 20px;
   box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 /* Logo im Header: Text + Bild */
@@ -76,7 +79,7 @@ nav ul#menu li a:hover {
 /* Hamburger Icon (für mobile) */
 .hamburger {
   display: none;
-  font-size: 1.8em;
+  font-size: 2em;
   cursor: pointer;
   user-select: none;
 }
