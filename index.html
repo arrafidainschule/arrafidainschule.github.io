@@ -1,55 +1,64 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- Oberer Banner -->
-<header class="top-banner">
-  <div class="container">
-    <a href="index.html" class="logo-container">
-      <span class="school-name">مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة</span>
-      <img src="logo/ArraRundLogo.png" alt="Logo" class="logo" />
-    </a>
-    <div class="menu-toggle">&#9776;</div>
-    <nav>
-      <ul class="menu">
-        <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="hausaufgaben.html">الواجبات البيتية</a></li>
-        <li><a href="about.html">عن المدرسة</a></li>
-        <li><a href="bilder.html">معرض الصور</a></li>
-        <li><a href="ads.html">إعلانات</a></li>
-        <li><a href="kontakt.html">اتصل بنا</a></li>
-      </ul>
-    </nav>
+<!-- ===== HEADER START ===== -->
+<header>
+  <div class="logo" onclick="window.location.href='index.html'">
+    مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة
   </div>
+  <nav>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <ul id="menu">
+      <li><a href="index.html">الصفحة الرئيسية</a></li>
+      <li><a href="hausaufgaben.html">الواجبات البيتية</a></li>
+      <li><a href="about.html">عن المدرسة</a></li>
+      <li><a href="bilder.html">معرض الصور</a></li>
+      <li><a href="ads.html">إعلانات</a></li>
+      <li><a href="kontakt.html">اتصل بنا</a></li>
+      
+    </ul>
+  </nav>
 </header>
+<!-- ===== HEADER END ===== -->
 
-<!-- Hauptinhalt -->
-<main class="container">
+<!-- Zwei Banner unter dem Header -->
+<div class="banners-container">
+  <div class="banner">
+    إعلان هام: التسجيل للعام الدراسي الجديد مفتوح الآن!
+  </div>
+  <div class="banner">
+    نادٍ ثقافي عربي تأسس عام ٢٠٠٥ في مدينة شتوتغارت بهدف تعليم الناشئة للغة العربية بمختلف علومها وفنونها
+  </div>
+</div>
+
+<main>
   <h1>مرحباً بكم في مدرسة الرافدين العربية</h1>
-  <p>نادي ثقافي عربي تأسس عام ٢٠٠٥ في مدينة شتوتغارت بهدف تعليم الناشئة للغة العربية بمختلف علومها وفنونها</p>
+  <p>هنا يمكنكم التعرف على المدرسة، أنشطتها، ومتابعة آخر الأخبار.</p>
 </main>
 
-<!-- Unterer Banner mit Social Icons -->
-<footer class="bottom-banner">
-  <div class="container social-icons">
-    <a href="https://www.facebook.com/people/Arrafidain-Arabische-Schule/pfbid02Sf3yXTFtQ25GpouhLvenn1pvYtbqaXgrEPsHdbEyHuVjnCQhTk4iRqsqPDatiutcl/" target="_blank" rel="noopener noreferrer">
+<!-- ===== FOOTER START ===== -->
+<footer>
+  <div class="social-icons">
+    <a href="https://www.facebook.com/people/Arrafidain-Arabische-Schule/pfbid02Sf3yXTFtQ25GpouhLvenn1pvYtbqaXgrEPsHdbEyHuVjnCQhTk4iRqsqPDatiutcl/" target="_blank">
       <img src="logo/Facebook_Logo_Secondary.png" alt="Facebook" />
     </a>
-    <a href="https://bit.ly/3A1J1mK" target="_blank" rel="noopener noreferrer">
+    <a href="https://bit.ly/3A1J1mK" target="_blank">
       <img src="logo/Instagram_Logo_Secondary.png" alt="Instagram" />
     </a>
-    <a href="https://t.me/arrafidainschule" target="_blank" rel="noopener noreferrer">
+    <a href="https://t.me/arrafidainschule" target="_blank">
       <img src="logo/WhatsApp_Logo_Secondary.png" alt="Telegram" />
     </a>
   </div>
 </footer>
+<!-- ===== FOOTER END ===== -->
 
-<script src="menu.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
