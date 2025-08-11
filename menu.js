@@ -1,12 +1,12 @@
 // Hamburger Menü Toggle
 const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('nav ul');
+const navLinks = document.querySelector('nav ul.menu');
 
 menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('active');
 });
 
-// Lightbox Funktion
+// Lightbox Funktion (funktioniert wie bisher)
 const galleryImages = document.querySelectorAll('.gallery img');
 const lightbox = document.createElement('div');
 lightbox.classList.add('lightbox');
