@@ -8,29 +8,47 @@
 </head>
 <body>
 
-<!-- Header wird per JS geladen -->
-<div id="header-placeholder"></div>
+<!-- ===== HEADER START ===== -->
+<header>
+  <div class="logo" onclick="window.location.href='index.html'">
+    مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة
+    <img src="logo/ArraRundLogo.png" alt="Logo" class="school-logo" />
+  </div>
+  <nav>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <ul id="menu">
+      <li><a href="index.html">الصفحة الرئيسية</a></li>
+      <li><a href="hausaufgaben.html">الواجبات البيتية</a></li>
+      <li><a href="about.html">عن المدرسة</a></li>
+      <li><a href="bilder.html">معرض الصور</a></li>
+      <li><a href="ads.html">إعلانات</a></li>
+      <li><a href="kontakt.html">اتصل بنا</a></li>
+    </ul>
+  </nav>
+</header>
+<!-- ===== HEADER END ===== -->
+
 
 <main class="container">
   <h1>إعلانات</h1>
   <p>هنا يمكنك إضافة آخر الأخبار والإعلانات الخاصة بالمدرسة.</p>
 </main>
 
-<script>
-  fetch('header.html')
-    .then(response => {
-      if (!response.ok) throw new Error('Fehler beim Laden des Headers');
-      return response.text();
-    })
-    .then(data => {
-      document.getElementById('header-placeholder').innerHTML = data;
-    })
-    .catch(err => {
-      console.error(err);
-    });
-</script>
-
-<script src="menu.js"></script>
+<!-- ===== FOOTER START ===== -->
+<footer>
+  <div class="social-icons">
+    <a href="https://www.facebook.com/people/Arrafidain-Arabische-Schule/pfbid02Sf3yXTFtQ25GpouhLvenn1pvYtbqaXgrEPsHdbEyHuVjnCQhTk4iRqsqPDatiutcl/" target="_blank">
+      <img src="logo/Facebook_Logo_Secondary.png" alt="Facebook" />
+    </a>
+    <a href="https://bit.ly/3A1J1mK" target="_blank">
+      <img src="logo/Instagram_Logo_Secondary.png" alt="Instagram" />
+    </a>
+    <a href="https://t.me/arrafidainschule" target="_blank">
+      <img src="logo/WhatsApp_Logo_Secondary.png" alt="Telegram" />
+    </a>
+  </div>
+</footer>
+<!-- ===== FOOTER END ===== -->
 
 </body>
 </html>
