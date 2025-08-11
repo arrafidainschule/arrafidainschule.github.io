@@ -67,7 +67,7 @@ nav ul.menu li a {
 
 nav ul.menu li a:hover {
   background-color: #cfa93f; /* Gold */
-  color: #00205b;
+  color: #12470d;            /* Frabe vom Menu */
 }
 
 /* Hamburger Menu Toggle Button */
@@ -81,7 +81,7 @@ nav ul.menu li a:hover {
 
 /* Social Icons im unteren Banner */
 .bottom-banner {
-  background-color: #00205b;
+  background-color: #12470d;
   padding: 15px 0;
   margin-top: auto;
   text-align: center;
@@ -109,7 +109,7 @@ nav ul.menu li a:hover {
   nav ul.menu {
     display: none;
     flex-direction: column;
-    background-color: #00205b;
+    background-color: #12470d;
     position: absolute;
     top: 55px;
     right: 20px;
