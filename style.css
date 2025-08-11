@@ -109,16 +109,18 @@ nav ul.menu li a:hover {
 
 /* Responsive für kleine Bildschirme */
 @media (max-width: 768px) {
+  /* Navigation wird versteckt und als Dropdown angezeigt */
   nav ul.menu {
     display: none;
     flex-direction: column;
     background-color: #12470d;
     position: absolute;
-    top: 55px;
-    right: 20px;
+    top: 60px;
+    right: 15px;
     border-radius: 6px;
-    width: 180px;
+    width: 200px;
     padding: 10px 0;
+    z-index: 10000;
   }
 
   nav ul.menu.active {
@@ -131,5 +133,37 @@ nav ul.menu li a:hover {
 
   .menu-toggle {
     display: block;
+    margin-right: 15px;
+  }
+
+  .logo-container {
+    flex-direction: row-reverse; /* Logo rechts vom Namen */
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .school-name {
+    font-size: 1.2rem;
+  }
+
+  .logo {
+    height: 35px;
+    width: 35px;
+  }
+
+  .top-banner {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .social-icons img {
+    height: 28px;
+    width: 28px;
+    margin: 5px;
+  }
+
+  .bottom-banner {
+    padding: 10px 0;
   }
 }
+
