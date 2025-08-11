@@ -1,25 +1,56 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>الصور - مدارس الرافدين العربية</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>معرض الصور - مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>…</header>  <!-- genau wie oben -->
+<header>
+  <div class="header-content">
+    <a href="index.html" class="logo-container">
+      <span class="school-name">مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة</span>
+      <img src="logo/ArraRundLogo.png" alt="Logo" class="logo" />
+    </a>
+    <nav>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+      <ul id="menu" class="menu">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="hausaufgaben.html">الواجبات البيتية</a></li>
+        <li><a href="about.html">عن المدرسة</a></li>
+        <li><a href="bilder.html">معرض الصور</a></li>
+        <li><a href="ads.html">إعلانات</a></li>
+        <li><a href="kontakt.html">اتصل بنا</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
 <main>
   <h1>معرض الصور</h1>
   <div class="gallery">
+    <!-- Beispielbilder, bitte ersetzen -->
     <img src="images/bild1.jpg" alt="Bild 1" />
     <img src="images/bild2.jpg" alt="Bild 2" />
     <img src="images/bild3.jpg" alt="Bild 3" />
   </div>
 </main>
 
-<footer>…</footer>  <!-- wie oben -->
+<footer>
+  <div class="social-icons">
+    <a href="https://www.facebook.com/people/Arrafidain-Arabische-Schule/pfbid02Sf3yXTFtQ25GpouhLvenn1pvYtbqaXgrEPsHdbEyHuVjnCQhTk4iRqsqPDatiutcl/" target="_blank" rel="noopener noreferrer">
+      <img src="logo/Facebook_Logo_Secondary.png" alt="Facebook" />
+    </a>
+    <a href="https://bit.ly/3A1J1mK" target="_blank" rel="noopener noreferrer">
+      <img src="logo/Instagram_Logo_Secondary.png" alt="Instagram" />
+    </a>
+    <a href="https://t.me/arrafidainschule" target="_blank" rel="noopener noreferrer">
+      <img src="logo/WhatsApp_Logo_Secondary.png" alt="Telegram" />
+    </a>
+  </div>
+</footer>
 
 <script src="script.js"></script>
 </body>
