@@ -180,11 +180,12 @@ footer {
 }
 
 .social-icons a:hover {
+  fill: #cfa93f;
   transform: scale(1.1);
 }
 
-.social-icons svg {
+/*.social-icons svg {
   fill: #cfa93f;
   width: 24px;
   height: 24px;
-}
+}*/
