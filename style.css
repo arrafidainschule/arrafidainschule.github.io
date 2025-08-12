@@ -157,3 +157,13 @@ footer {
   filter: brightness(1.2);
 }
 
+.social-icons a {
+  display: inline-block;
+  line-height: 0;
+}
+
+.social-icons img {
+  display: block;
+}
+
+
