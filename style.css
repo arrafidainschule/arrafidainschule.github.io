@@ -146,7 +146,11 @@ footer {
   }
 }
 
-/* ICONs im footer */
+.social-icons img {
+  transition: 0.2s ease-in-out;
+}
+
+/* ICONs im footer 
 .social-icons {
   display: flex;
   justify-content: center;
@@ -163,16 +167,16 @@ footer {
   transform: scale(1.1);
 }
 
-.social-icons a img {
-  fill: #fff; /* Icon-Farbe */
+.social-icons a {
+  fill: #fff;  Icon-Farbe 
   width: 24px;
   height: 24px;
   transition: fill 0.3s;
 }
 
-.social-icons a:hover img {
-  fill: #cfa93f; /* Farbe beim Hover */
-}
+.social-icons a:hover  {
+  fill: #cfa93f; Farbe beim Hover 
+} */
 
 /*.social-icons svg {
   fill: #cfa93f;
