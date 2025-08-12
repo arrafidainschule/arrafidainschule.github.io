@@ -149,6 +149,7 @@ footer {
 .social-icons img {
   transition: transform 0.3s ease, filter 0.3s ease;
   cursor: pointer;
+  gap: 15px;
 }
 
 .social-icons img:hover {
@@ -164,23 +165,3 @@ footer {
 .social-icons img {
   display: block;
 }
-/* ICONs im footer 
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  padding: 24px;
-  align-items: center;
-}
-
-.social-icons a {
-  display: inline-flex;
-  line-height: 0;
-  vertical-align: middle;
-}
-
-.social-icons img {
-  display: block;
-  width: 24px;
-  height: 24px;
-}*/
