@@ -146,40 +146,14 @@ footer {
   }
 }
 
+/* ICONs im footer */
 .social-icons img {
-  transition: 0.2s ease-in-out;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
 }
 
-/* ICONs im footer 
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  padding: 24px;
+.social-icons img:hover {
+  transform: scale(1.15);
+  filter: brightness(1.2);
 }
 
-.social-icons a {
-  display: inline-block;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.social-icons a:hover {
-  transform: scale(1.1);
-}
-
-.social-icons a {
-  fill: #fff;  Icon-Farbe 
-  width: 24px;
-  height: 24px;
-  transition: fill 0.3s;
-}
-
-.social-icons a:hover  {
-  fill: #cfa93f; Farbe beim Hover 
-} */
-
-/*.social-icons svg {
-  fill: #cfa93f;
-  width: 24px;
-  height: 24px;
-}*/
