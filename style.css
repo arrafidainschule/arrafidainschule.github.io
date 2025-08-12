@@ -163,14 +163,14 @@ footer {
   transform: scale(1.1);
 }
 
-.social-icons svg {
+.social-icons a img {
   fill: #fff; /* Icon-Farbe */
   width: 24px;
   height: 24px;
   transition: fill 0.3s;
 }
 
-.social-icons a:hover svg {
+.social-icons a:hover img {
   fill: #cfa93f; /* Farbe beim Hover */
 }
 
