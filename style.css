@@ -145,6 +145,8 @@ footer {
     color: white;
   }
 }
+
+/* ICONs im footer */
 .social-icons {
   display: flex;
   justify-content: center;
@@ -164,25 +166,3 @@ footer {
   width: 24px;
   height: 24px;
 }
-
-/* ICONs im footer 
-.social-icons img {
-  transition: transform 0.3s ease, filter 0.3s ease;
-  cursor: pointer;
-}
-
-.social-icons img:hover {
-  transform: scale(1.15);
-  filter: brightness(1.2);
-}
-
-.social-icons a {
-  display: inline-block;
-  line-height: 0;
-}
-
-.social-icons img {
-  display: block;
-}
-
-*/
