@@ -124,26 +124,6 @@ footer {
   box-sizing: border-box;
 }
 
-/* Social Icons im Footer */
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  align-items: center;
-}
-
-.social-icons img {
-  width: 32px;
-  height: 32px;
-  filter: brightness(0) invert(1);
-  transition: filter 0.3s ease;
-  cursor: pointer;
-}
-
-.social-icons img:hover {
-  filter: brightness(0.8) invert(0.7);
-}
-
 /* Responsive: Menü für kleine Bildschirme */
 @media (max-width: 768px) {
   nav ul#menu {
@@ -182,6 +162,10 @@ footer {
 .social-icons a:hover {
   fill: #cfa93f;
   transform: scale(1.1);
+}
+
+.social-icons a:hover svg {
+  fill: #cfa93f; /* Farbe beim Hover */
 }
 
 /*.social-icons svg {
