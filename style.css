@@ -171,23 +171,15 @@ footer {
   display: flex;
   justify-content: center;
   gap: 15px;
-  padding: 10px;
+  padding: 24px;
 }
 
 .social-icons a {
   display: inline-block;
-  width: 40px;
-  height: 40px;
-  background-color: #000000;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   transition: background-color 0.3s, transform 0.3s;
 }
 
 .social-icons a:hover {
-  background-color: #0073e6;
   transform: scale(1.1);
 }
 
