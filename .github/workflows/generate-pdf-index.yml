@@ -19,14 +19,67 @@ jobs:
         run: |
           for dir in pdfs/*/; do
             year=$(basename "$dir")
-            echo "<!DOCTYPE html>" > "$dir/index.html"
-            echo "<html lang='ar' dir='rtl'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>$year - الواجبات البيتية</title></head><body>" >> "$dir/index.html"
-            echo "<h1>الواجبات البيتية $year</h1><ul>" >> "$dir/index.html"
-            for pdf in "$dir"*.pdf; do
-              file=$(basename "$pdf")
-              echo "<li><a href='$file' target='_blank'>$file</a></li>" >> "$dir/index.html"
-            done
-            echo "</ul><p><a href='../index.html'>العودة</a></p></body></html>" >> "$dir/index.html"
+            {
+              echo "<!DOCTYPE html>"
+              echo "<html lang='ar' dir='rtl'>"
+              echo "<head>"
+              echo "<meta charset='UTF-8' />"
+              echo "<meta name='viewport' content='width=device-width, initial-scale=1' />"
+              echo "<title>الواجبات البيتية $year - مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة</title>"
+              echo "<link rel='stylesheet' href='../../style.css' />"
+              echo "<link rel='icon' type='image/png' sizes='32x32' href='../../logo/favicon-32x32.png'>"
+              echo "</head>"
+              echo "<body>"
+              
+              # HEADER
+              echo "<header>"
+              echo "  <div class='logo' onclick=\"window.location.href='../../index.html'\">"
+              echo "    مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة"
+              echo "    <img src='../../logo/ArraRundLogo.png' alt='Logo' class='school-logo' />"
+              echo "  </div>"
+              echo "  <nav>"
+              echo "    <div class='hamburger' onclick='toggleMenu()'>☰</div>"
+              echo "    <ul id='menu'>"
+              echo "      <li><a href='../../index.html'>الصفحة الرئيسية</a></li>"
+              echo "      <li><a href='../../hausaufgaben.html'>الواجبات البيتية</a></li>"
+              echo "      <li><a href='../../about.html'>عن المدرسة</a></li>"
+              echo "      <li><a href='../../bilder.html'>معرض الصور</a></li>"
+              echo "      <li><a href='../../ads.html'>إعلانات</a></li>"
+              echo "      <li><a href='../../kontakt.html'>اتصل بنا</a></li>"
+              echo "    </ul>"
+              echo "  </nav>"
+              echo "</header>"
+
+              # SEITENINHALT
+              echo "<main>"
+              echo "<h1>الواجبات البيتية $year</h1>"
+              echo "<ul>"
+              for pdf in "$dir"*.pdf; do
+                file=$(basename "$pdf")
+                echo "<li><a href='$file' target='_blank'>$file</a></li>"
+              done
+              echo "</ul>"
+              echo "<p><a href='../../hausaufgaben.html'>العودة</a></p>"
+              echo "</main>"
+
+              # FOOTER
+              echo "<footer>"
+              echo "  <div class='social-icons'>"
+              echo "    <a href='https://www.facebook.com/profile.php?id=100063760595206#' target='_blank' aria-label='Facebook'>"
+              echo "      <img src='../../logo/facebook-svgrepo-com.svg' data-hover='../../logo/facebook-svgrepo-com-gold.svg' alt='Facebook' width='24' height='24'>"
+              echo "    </a>"
+              echo "    <a href='https://www.instagram.com/arrafidain_kulturverein_e.v._/' target='_blank' aria-label='Instagram'>"
+              echo "      <img src='../../logo/instagram-svgrepo-com.svg' data-hover='../../logo/instagram-svgrepo-com-gold.svg' alt='Instagram' width='24' height='24'>"
+              echo "    </a>"
+              echo "    <a href='https://t.me/arrafidainschule' target='_blank' aria-label='Telegram'>"
+              echo "      <img src='../../logo/telegram-svgrepo-com.svg' data-hover='../../logo/telegram-svgrepo-com-gold.svg' alt='Telegram' width='24' height='24'>"
+              echo "    </a>"
+              echo "  </div>"
+              echo "</footer>"
+
+              echo "<script src='../../script.js'></script>"
+              echo "</body></html>"
+            } > "$dir/index.html"
           done
 
       - name: Commit and push changes
