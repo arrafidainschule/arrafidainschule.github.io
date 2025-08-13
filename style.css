@@ -171,6 +171,8 @@ footer {
   gap: 20px;                     /* Abstand zwischen Ordnern */
   justify-content: center;       /* Zentriert die Boxen */
   padding: 20px 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .folder {
@@ -215,5 +217,4 @@ footer {
   }
 }
 
-}
 
