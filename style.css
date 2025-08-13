@@ -164,37 +164,32 @@ footer {
 
 .social-icons img {
 
-  /* Folder fur HA */
-  ..folder-container {
+/* Folder fur HA */
+  .folder-container {
   display: flex;
-  flex-wrap: wrap; /* Falls zu viele Ordner da sind, gehen sie in die nächste Zeile */
-  gap: 30px;       /* Abstand zwischen den Ordnern */
-  justify-content: center; /* Zentriert die Ordner in der Mitte */
-  margin-top: 30px;
+  flex-wrap: wrap;       /* Damit die Boxen umbrechen, wenn kein Platz */
+  gap: 20px;             /* Abstand zwischen den Ordnern */
+  justify-content: center; /* Zentriert die Boxen */
+  padding: 20px 0;
 }
 
 .folder {
-  text-align: center;
-}
-
-.folder a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-decoration: none;
-  color: #11470b;
+  text-align: center;
+  width: 150px;          /* Breite der Boxen */
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
-.folder svg {
-  transition: transform 0.3s ease;
-}
-
-.folder:hover svg {
-  transform: scale(1.1);
+.folder:hover {
+  transform: scale(1.05);
 }
 
 .folder-label {
-  margin-top: 8px;
+  margin-top: 10px;
   font-weight: bold;
-  font-size: 1.2rem;
+  color: #11470b;
 }
+
