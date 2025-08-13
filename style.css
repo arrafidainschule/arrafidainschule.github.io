@@ -189,7 +189,7 @@ footer {
 
 .folder:hover svg {
   transform: scale(1.1);
-  fill: #0a2e05;
+  fill: #cfa93f;
 }
 
 .folder-label {
