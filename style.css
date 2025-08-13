@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 /* Grundlegende Einstellungen */
 body {
   margin: 0;
