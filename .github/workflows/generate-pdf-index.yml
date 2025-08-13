@@ -52,7 +52,7 @@ jobs:
 
               # SEITENINHALT
               echo "<main>"
-              echo "<h1>الواجبات البيتية $year</h1>"
+              echo "<h1>الواجبات البيتية للعام الدراسي $year</h1>"
               echo "<ul>"
               for pdf in "$dir"*.pdf; do
                 file=$(basename "$pdf")
