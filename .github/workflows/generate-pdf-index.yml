@@ -65,7 +65,7 @@ jobs:
               if [[ "$file" =~ ([0-9]{2})([0-9]{2})([0-9]{4}) ]]; then
                 dd="${BASH_REMATCH[1]}"; mm="${BASH_REMATCH[2]}"; yyyy="${BASH_REMATCH[3]}"
                 key="$yyyy$mm$dd"
-                label="الواجبات البيتية — $dd.$mm.$yyyy"
+                label="الواجب البيتي ليوم — $dd.$mm.$yyyy"
               else
                 key="00000000"
                 label="$file"
@@ -76,7 +76,7 @@ jobs:
 
             if [[ -s "$tmp" ]]; then
               sort -r -k1,1 "$tmp" | while IFS=$'\t' read -r key href label; do
-                echo "    <li><a href=\"$href\">$label</a></li>" >> "$out"
+                echo "    <li><a href=\"$href\"target="_blank">$label</a></li>" >> "$out"
               done
             else
               echo "    <li>لا توجد ملفات بعد.</li>" >> "$out"
@@ -87,6 +87,8 @@ jobs:
               echo "  </ul>"
               echo "  <p><a href='../../hausaufgaben.html'>العودة</a></p>"
               echo "</main>"
+
+              #FOOTER
               echo "<footer>"
               echo "  <div class='social-icons'>"
               echo "    <a href='https://www.facebook.com/profile.php?id=100063760595206#' target='_blank'><img src='../../logo/facebook-svgrepo-com.svg' alt='Facebook' width='24' height='24'></a>"
