@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const headerPlaceholder = document.getElementById("header-placeholder");
   if (headerPlaceholder) {
-    fetch("header.html")
+    fetch("structure/header.html")
       .then(response => response.text())
       .then(data => {
         headerPlaceholder.innerHTML = data;
