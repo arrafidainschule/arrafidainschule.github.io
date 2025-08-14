@@ -115,8 +115,7 @@ jobs:
           done
 
           # hausaufgaben.html mit nur neuester Hausaufgabe
-          if [[ -n "$latest_href" ]]; then
-            {
+           {
               echo "<!DOCTYPE html>"
               echo "<html lang='ar' dir='rtl'>"
               echo "<head>"
@@ -127,15 +126,20 @@ jobs:
               echo "<link rel='icon' type='image/png' sizes='32x32' href='logo/favicon-32x32.png'>"
               echo "</head>"
               echo "<body>"
-              echo "<header><div class='logo' onclick=\"window.location.href='index.html'\">مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة <img src='logo/ArraRundLogo.png' alt='Logo' class='school-logo' /></div></header>"
+              echo "<header>"
+              echo "  <div class='logo' onclick=\"window.location.href='index.html'\">مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة <img src='logo/ArraRundLogo.png' alt='Logo' class='school-logo' /></div>"
+              echo "</header>"
               echo "<main>"
               echo "  <h1>أحدث واجب بيتي</h1>"
-              echo "  <p><a href='$latest_href' target='_blank'>$latest_label</a></p>"
+              if [[ -n "$latest_href" ]]; then
+                echo "  <p><a href='$latest_href' target='_blank'>$latest_label</a></p>"
+              else
+                echo "  <p>لا توجد ملفات بعد.</p>"
+              fi
               echo "</main>"
               echo "<footer></footer>"
               echo "</body></html>"
             } > hausaufgaben.html
-          fi
 
       - name: Commit and push changes
         run: |
