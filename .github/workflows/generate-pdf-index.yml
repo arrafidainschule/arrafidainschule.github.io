@@ -72,6 +72,14 @@ jobs:
                 label="$file"
               fi
               href="${file// /%20}"
+
+              # Neueste Datei merken
+              if [[ "$key" > "$latest_key" ]]; then
+                latest_key="$key"
+                latest_href="$dir$href"
+                latest_label="$label"
+              fi
+              
               printf '%s\t%s\t%s\n' "$key" "$href" "$label" >> "$tmp"
             done
 
@@ -80,7 +88,7 @@ jobs:
                 echo "    <li><a href=\"$href\"target="_blank">$label</a></li>" >> "$out"
               done
             else
-              echo "    <li>لا توجد ملفات بعد.</li>" >> "$out"
+              echo "    <p>لا توجد ملفات بعد.</p>" >> "$out"
             fi
             rm -f "$tmp"
 
@@ -100,9 +108,16 @@ jobs:
               echo "<script src='../../script.js'></script>"
               echo "</body></html>"
             } >> "$out"
-
           done
 
+          # JSON-Datei für neueste Hausaufgabe schreiben
+            mkdir -p hausaufgaben
+            if [[ -n "$latest_href" ]]; then
+              echo "{ \"href\": \"$latest_href\", \"label\": \"$latest_label\" }" > hausaufgaben/latest_homework.json
+            else
+              echo "{ \"href\": \"\", \"label\": \"لا توجد ملفات بعد\" }" > hausaufgaben/latest_homework.json
+            fi
+          
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
