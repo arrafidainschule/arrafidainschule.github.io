@@ -54,10 +54,13 @@ jobs:
               echo "<main>"
               echo "<h1>الواجبات البيتية للعام الدراسي $year</h1>"
               echo "<ul>"
-              for pdf in "$dir"*.pdf; do
+              
+              # Sortiere nach Datum im Dateinamen (Format: ddmmyyyy)
+              for pdf in $(ls "$dir"*.pdf | sed -E 's/.*([0-9]{8})\.pdf/\1 &/' | sort -r | cut -d' ' -f2); do
                 file=$(basename "$pdf")
                 echo "<li><a href='$file' target='_blank'>$file</a></li>"
               done
+
               echo "</ul>"
               echo "<p><a href='../../hausaufgaben.html'>العودة</a></p>"
               echo "</main>"
