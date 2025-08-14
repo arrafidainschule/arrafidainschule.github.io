@@ -16,8 +16,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Generate index.html for each folder (sorted by date in filename)
+      - name: Generate index.html for each folder and latest homework
         run: |
+          latest_key="00000000"
+          latest_href=""
+          latest_label=""
+
+          # Jahresordner
           for dir in pdfs/*/; do
             year=$(basename "$dir")
             out="$dir/index.html"
@@ -58,7 +63,6 @@ jobs:
               echo "  <ul id='pdf-list'>"
             } > "$out"
 
-            # PDFs sammeln
             tmp="$(mktemp)"
             find "$dir" -maxdepth 1 -type f -name '*.pdf' -print0 | while IFS= read -r -d '' pdf; do
               file=$(basename "$pdf")
@@ -71,12 +75,20 @@ jobs:
                 label="$file"
               fi
               href="${file// /%20}"
+
+              # neueste Datei merken
+              if [[ "$key" > "$latest_key" ]]; then
+                latest_key="$key"
+                latest_href="$dir$href"
+                latest_label="$label"
+              fi
+
               printf '%s\t%s\t%s\n' "$key" "$href" "$label" >> "$tmp"
             done
 
             if [[ -s "$tmp" ]]; then
               sort -r -k1,1 "$tmp" | while IFS=$'\t' read -r key href label; do
-                echo "    <li><a href=\"$href\"target="_blank">$label</a></li>" >> "$out"
+                echo "    <li><a href=\"$href\" target=\"_blank\">$label</a></li>" >> "$out"
               done
             else
               echo "    <li>لا توجد ملفات بعد.</li>" >> "$out"
@@ -88,7 +100,7 @@ jobs:
               echo "  <p><a href='../../hausaufgaben.html'>العودة</a></p>"
               echo "</main>"
 
-              #FOOTER
+              # FOOTER
               echo "<footer>"
               echo "  <div class='social-icons'>"
               echo "    <a href='https://www.facebook.com/profile.php?id=100063760595206#' target='_blank'><img src='../../logo/facebook-svgrepo-com.svg' alt='Facebook' width='24' height='24'></a>"
@@ -102,10 +114,33 @@ jobs:
 
           done
 
+          # hausaufgaben.html mit nur neuester Hausaufgabe
+          if [[ -n "$latest_href" ]]; then
+            {
+              echo "<!DOCTYPE html>"
+              echo "<html lang='ar' dir='rtl'>"
+              echo "<head>"
+              echo "<meta charset='UTF-8' />"
+              echo "<meta name='viewport' content='width=device-width, initial-scale=1' />"
+              echo "<title>الواجبات البيتية - مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة</title>"
+              echo "<link rel='stylesheet' href='style.css' />"
+              echo "<link rel='icon' type='image/png' sizes='32x32' href='logo/favicon-32x32.png'>"
+              echo "</head>"
+              echo "<body>"
+              echo "<header><div class='logo' onclick=\"window.location.href='index.html'\">مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة <img src='logo/ArraRundLogo.png' alt='Logo' class='school-logo' /></div></header>"
+              echo "<main>"
+              echo "  <h1>أحدث واجب بيتي</h1>"
+              echo "  <p><a href='$latest_href' target='_blank'>$latest_label</a></p>"
+              echo "</main>"
+              echo "<footer></footer>"
+              echo "</body></html>"
+            } > hausaufgaben.html
+          fi
+
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add pdfs/*/index.html
-          git commit -m "Auto-generate PDF indexes (sorted, safe)" || echo "No changes"
+          git add pdfs/*/index.html hausaufgaben.html
+          git commit -m "Auto-generate PDF indexes and latest homework" || echo "No changes"
           git push
