@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Generate index.html for each folder
+      - name: Generate index.html for each folder (sorted by date in filename)
         run: |
           for dir in pdfs/*/; do
             year=$(basename "$dir")
@@ -30,7 +30,7 @@ jobs:
               echo "<link rel='icon' type='image/png' sizes='32x32' href='../../logo/favicon-32x32.png'>"
               echo "</head>"
               echo "<body>"
-              
+
               # HEADER
               echo "<header>"
               echo "  <div class='logo' onclick=\"window.location.href='../../index.html'\">"
@@ -54,7 +54,7 @@ jobs:
               echo "<main>"
               echo "<h1>الواجبات البيتية للعام الدراسي $year</h1>"
               echo "<ul>"
-              
+
               # Sortiere nach Datum im Dateinamen (Format: ddmmyyyy)
               for pdf in $(ls "$dir"*.pdf | sed -E 's/.*([0-9]{8})\.pdf/\1 &/' | sort -r | cut -d' ' -f2); do
                 file=$(basename "$pdf")
