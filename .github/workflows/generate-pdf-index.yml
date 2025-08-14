@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'pdfs/**.pdf'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -15,74 +16,100 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Generate index.html for each folder (sorted by date in filename)
+      - name: Generate index.html for each folder (sorted, safe with spaces)
+        shell: bash
         run: |
+          set -Eeuo pipefail
+          shopt -s nullglob
+
           for dir in pdfs/*/; do
             year=$(basename "$dir")
-            {
-              echo "<!DOCTYPE html>"
-              echo "<html lang='ar' dir='rtl'>"
-              echo "<head>"
-              echo "<meta charset='UTF-8' />"
-              echo "<meta name='viewport' content='width=device-width, initial-scale=1' />"
-              echo "<title>الواجبات البيتية $year - مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة</title>"
-              echo "<link rel='stylesheet' href='../../style.css' />"
-              echo "<link rel='icon' type='image/png' sizes='32x32' href='../../logo/favicon-32x32.png'>"
-              echo "</head>"
-              echo "<body>"
+            out="$dir/index.html"
 
-              # HEADER
-              echo "<header>"
-              echo "  <div class='logo' onclick=\"window.location.href='../../index.html'\">"
-              echo "    مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة"
-              echo "    <img src='../../logo/ArraRundLogo.png' alt='Logo' class='school-logo' />"
-              echo "  </div>"
-              echo "  <nav>"
-              echo "    <div class='hamburger' onclick='toggleMenu()'>☰</div>"
-              echo "    <ul id='menu'>"
-              echo "      <li><a href='../../index.html'>الصفحة الرئيسية</a></li>"
-              echo "      <li><a href='../../hausaufgaben.html'>الواجبات البيتية</a></li>"
-              echo "      <li><a href='../../about.html'>عن المدرسة</a></li>"
-              echo "      <li><a href='../../bilder.html'>معرض الصور</a></li>"
-              echo "      <li><a href='../../ads.html'>إعلانات</a></li>"
-              echo "      <li><a href='../../kontakt.html'>اتصل بنا</a></li>"
-              echo "    </ul>"
-              echo "  </nav>"
-              echo "</header>"
+            # Header + Anfang
+            cat > "$out" <<HTML
+<!DOCTYPE html>
+<html lang='ar' dir='rtl'>
+<head>
+<meta charset='UTF-8' />
+<meta name='viewport' content='width=device-width, initial-scale=1' />
+<title>الواجبات البيتية $year - مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة</title>
+<link rel='stylesheet' href='../../style.css' />
+<link rel='icon' type='image/png' sizes='32px32' href='../../logo/favicon-32x32.png'>
+</head>
+<body>
+<header>
+  <div class='logo' onclick="window.location.href='../../index.html'">
+    مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة
+    <img src='../../logo/ArraRundLogo.png' alt='Logo' class='school-logo' />
+  </div>
+  <nav>
+    <div class='hamburger' onclick='toggleMenu()'>☰</div>
+    <ul id='menu'>
+      <li><a href='../../index.html'>الصفحة الرئيسية</a></li>
+      <li><a href='../../hausaufgaben.html'>الواجبات البيتية</a></li>
+      <li><a href='../../about.html'>عن المدرسة</a></li>
+      <li><a href='../../bilder.html'>معرض الصور</a></li>
+      <li><a href='../../ads.html'>إعلانات</a></li>
+      <li><a href='../../kontakt.html'>اتصل بنا</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <h1>الواجبات البيتية للعام الدراسي $year</h1>
+  <ul id='pdf-list'>
+HTML
 
-              # SEITENINHALT
-              echo "<main>"
-              echo "<h1>الواجبات البيتية للعام الدراسي $year</h1>"
-              echo "<ul>"
+            # PDF-Liste aufbauen (null-getrennt, sicher bei Leerzeichen)
+            tmp="$(mktemp)"
+            while IFS= read -r -d '' pdf; do
+              file=$(basename "$pdf")
 
-              # Sortiere nach Datum im Dateinamen (Format: ddmmyyyy)
-              for pdf in $(ls "$dir"*.pdf | sed -E 's/.*([0-9]{8})\.pdf/\1 &/' | sort -r | cut -d' ' -f2); do
-                file=$(basename "$pdf")
-                echo "<li><a href='$file' target='_blank'>$file</a></li>"
+              # Datum ddmmyyyy aus dem Dateinamen ziehen
+              if [[ "$file" =~ ([0-9]{2})([0-9]{2})([0-9]{4}) ]]; then
+                dd="${BASH_REMATCH[1]}"; mm="${BASH_REMATCH[2]}"; yyyy="${BASH_REMATCH[3]}"
+                key="$yyyy$mm$dd"                                  # Sortierschlüssel
+                label="الواجبات البيتية — $dd.$mm.$yyyy"           # Anzeige-Text
+              else
+                key="00000000"                                      # ohne Datum ans Ende
+                label="$file"
+              fi
+
+              # Nur Leerzeichen URL-encoden (GitHub Pages mag das lieber)
+              href="${file// /%20}"
+              printf '%s\t%s\t%s\n' "$key" "$href" "$label" >> "$tmp"
+            done < <(find "$dir" -maxdepth 1 -type f -name '*.pdf' -print0)
+
+            if [[ -s "$tmp" ]]; then
+              sort -r -k1,1 "$tmp" | while IFS=$'\t' read -r key href label; do
+                printf '    <li><a href="%s">%s</a></li>\n' "$href" "$label" >> "$out"
               done
+            else
+              echo "    <li>لا توجد ملفات بعد.</li>" >> "$out"
+            fi
+            rm -f "$tmp"
 
-              echo "</ul>"
-              echo "<p><a href='../../hausaufgaben.html'>العودة</a></p>"
-              echo "</main>"
-
-              # FOOTER
-              echo "<footer>"
-              echo "  <div class='social-icons'>"
-              echo "    <a href='https://www.facebook.com/profile.php?id=100063760595206#' target='_blank' aria-label='Facebook'>"
-              echo "      <img src='../../logo/facebook-svgrepo-com.svg' data-hover='../../logo/facebook-svgrepo-com-gold.svg' alt='Facebook' width='24' height='24'>"
-              echo "    </a>"
-              echo "    <a href='https://www.instagram.com/arrafidain_kulturverein_e.v._/' target='_blank' aria-label='Instagram'>"
-              echo "      <img src='../../logo/instagram-svgrepo-com.svg' data-hover='../../logo/instagram-svgrepo-com-gold.svg' alt='Instagram' width='24' height='24'>"
-              echo "    </a>"
-              echo "    <a href='https://t.me/arrafidainschule' target='_blank' aria-label='Telegram'>"
-              echo "      <img src='../../logo/telegram-svgrepo-com.svg' data-hover='../../logo/telegram-svgrepo-com-gold.svg' alt='Telegram' width='24' height='24'>"
-              echo "    </a>"
-              echo "  </div>"
-              echo "</footer>"
-
-              echo "<script src='../../script.js'></script>"
-              echo "</body></html>"
-            } > "$dir/index.html"
+            # Ende der Seite
+            cat >> "$out" <<HTML
+  </ul>
+  <p><a href='../../hausaufgaben.html'>العودة</a></p>
+</main>
+<footer>
+  <div class='social-icons'>
+    <a href='https://www.facebook.com/profile.php?id=100063760595206#' target='_blank' aria-label='Facebook'>
+      <img src='../../logo/facebook-svgrepo-com.svg' data-hover='../../logo/facebook-svgrepo-com-gold.svg' alt='Facebook' width='24' height='24'>
+    </a>
+    <a href='https://www.instagram.com/arrafidain_kulturverein_e.v._/' target='_blank' aria-label='Instagram'>
+      <img src='../../logo/instagram-svgrepo-com.svg' data-hover='../../logo/instagram-svgrepo-com-gold.svg' alt='Instagram' width='24' height='24'>
+    </a>
+    <a href='https://t.me/arrafidainschule' target='_blank' aria-label='Telegram'>
+      <img src='../../logo/telegram-svgrepo-com.svg' data-hover='../../logo/telegram-svgrepo-com-gold.svg' alt='Telegram' width='24' height='24'>
+    </a>
+  </div>
+</footer>
+<script src='../../script.js'></script>
+</body></html>
+HTML
           done
 
       - name: Commit and push changes
@@ -90,5 +117,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add pdfs/*/index.html
-          git commit -m "Auto-generate PDF indexes" || echo "No changes"
+          git commit -m "Auto-generate PDF indexes (sorted, safe)" || echo "No changes"
           git push
