@@ -1,10 +1,9 @@
 name: Generate PDF index
 
 on:
-  push:
-    paths:
-      - 'pdfs/**.pdf'
-  workflow_dispatch:
+  push:        # Läuft bei jedem Push, egal welche Dateien
+    branches:
+      - main   # nur im main-Branch
 
 permissions:
   contents: write
