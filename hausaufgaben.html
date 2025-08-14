@@ -33,10 +33,9 @@
 <main>
   <h1>الواجبات البيتية</h1>
   
- <h2>أحدث واجب بيتي</h2>
+  <h2>أحدث واجب بيتي</h2>
   <div id="latest-homework">
-    <!-- Dieser Bereich wird vom Workflow ersetzt -->
-    %LATEST_HOMEWORK%
+    <p>جاري تحميل آخر واجب بيتي...</p>
   </div>
 
   <h2>الواجبات البيتية السابقة</h2>
@@ -125,7 +124,22 @@
 </div>
 </footer>
 <!-- ===== FOOTER END ===== -->
-
+<script>
+fetch('pdfs/latest_homework.json')
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById('latest-homework');
+    if (data.href) {
+      container.innerHTML = `<p><a href="${data.href}" target="_blank">${data.label}</a></p>`;
+    } else {
+      container.innerHTML = '<p>لا توجد ملفات بعد.</p>';
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    document.getElementById('latest-homework').innerHTML = '<p>خطأ في تحميل البيانات.</p>';
+  });
+</script>
 <script src="script.js"></script>
 </body>
 </html>
