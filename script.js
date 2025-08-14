@@ -1,3 +1,16 @@
+// Header
+document.addEventListener("DOMContentLoaded", () => {
+  const headerPlaceholder = document.getElementById("header-placeholder");
+  if (headerPlaceholder) {
+    fetch("header.html")
+      .then(response => response.text())
+      .then(data => {
+        headerPlaceholder.innerHTML = data;
+      })
+      .catch(err => console.error("Header konnte nicht geladen werden:", err));
+  }
+});
+
 // Hamburger-Menu
 function toggleMenu() {
   const menu = document.getElementById("menu");
