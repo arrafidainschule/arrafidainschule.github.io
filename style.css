@@ -205,16 +205,17 @@ footer {
   margin: 0;
 }
 
-.phone-list li {
-  margin: 8px 0;
-}
-
 .phone-list a {
   display: inline-flex;
+  flex-direction: row-reverse; /* Symbol rechts, Text links */
   align-items: center;
-  gap: 8px; /* Abstand zwischen Nummer und Icon */
+  gap: 8px; /* Abstand zwischen Symbol und Nummer */
   text-decoration: none;
   color: inherit;
+}
+
+.phone-list li {
+  margin: 8px 0;
 }
 
 .phone-list svg {
