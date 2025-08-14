@@ -1,4 +1,3 @@
-
 name: Generate PDF index
 
 on:
@@ -19,6 +18,10 @@ jobs:
 
       - name: Generate index.html for each folder (sorted by date in filename)
         run: |
+          latest_key="00000000"
+          latest_href=""
+          latest_label=""
+
           for dir in pdfs/*/; do
             year=$(basename "$dir")
             out="$dir/index.html"
@@ -59,12 +62,14 @@ jobs:
               echo "  <ul id='pdf-list'>"
             } > "$out"
 
-            # PDFs sammeln
+            # PDFs sammeln (ohne Subshell-Probleme)
             tmp="$(mktemp)"
-            find "$dir" -maxdepth 1 -type f -name '*.pdf' -print0 | while IFS= read -r -d '' pdf; do
+            while IFS= read -r -d '' pdf; do
               file=$(basename "$pdf")
               if [[ "$file" =~ ([0-9]{2})([0-9]{2})([0-9]{4}) ]]; then
-                dd="${BASH_REMATCH[1]}"; mm="${BASH_REMATCH[2]}"; yyyy="${BASH_REMATCH[3]}"
+                dd="${BASH_REMATCH[1]}"
+                mm="${BASH_REMATCH[2]}"
+                yyyy="${BASH_REMATCH[3]}"
                 key="$yyyy$mm$dd"
                 label="الواجب البيتي ليوم — $dd.$mm.$yyyy"
               else
@@ -79,16 +84,16 @@ jobs:
                 latest_href="$dir$href"
                 latest_label="$label"
               fi
-              
+
               printf '%s\t%s\t%s\n' "$key" "$href" "$label" >> "$tmp"
-            done
+            done < <(find "$dir" -maxdepth 1 -type f -name '*.pdf' -print0)
 
             if [[ -s "$tmp" ]]; then
-              sort -r -k1,1 "$tmp" | while IFS=$'\t' read -r key href label; do
-                echo "    <li><a href=\"$href\"target="_blank">$label</a></li>" >> "$out"
+              sort -rz -k1,1 "$tmp" | while IFS=$'\t' read -r key href label; do
+                echo "    <li><a href=\"$href\" target=\"_blank\">$label</a></li>" >> "$out"
               done
             else
-              echo "    <p>لا توجد ملفات بعد.</p>" >> "$out"
+              echo "    <li>لا توجد ملفات بعد.</li>" >> "$out"
             fi
             rm -f "$tmp"
 
@@ -97,7 +102,7 @@ jobs:
               echo "  <p><a href='../../hausaufgaben.html'>العودة</a></p>"
               echo "</main>"
 
-              #FOOTER
+              # FOOTER
               echo "<footer>"
               echo "  <div class='social-icons'>"
               echo "    <a href='https://www.facebook.com/profile.php?id=100063760595206#' target='_blank'><img src='../../logo/facebook-svgrepo-com.svg' alt='Facebook' width='24' height='24'></a>"
@@ -108,20 +113,21 @@ jobs:
               echo "<script src='../../script.js'></script>"
               echo "</body></html>"
             } >> "$out"
+
           done
 
           # JSON-Datei für neueste Hausaufgabe schreiben
-            mkdir -p hausaufgaben
-            if [[ -n "$latest_href" ]]; then
-              echo "{ \"href\": \"$latest_href\", \"label\": \"$latest_label\" }" > pdfs/latest_homework.json
-            else
-              echo "{ \"href\": \"\", \"label\": \"لا توجد ملفات بعد\" }" > pdfs/latest_homework.json
-            fi
-          
+          mkdir -p pdfs
+          if [[ -n "$latest_href" ]]; then
+            echo "{ \"href\": \"$latest_href\", \"label\": \"$latest_label\" }" > pdfs/latest_homework.json
+          else
+            echo "{ \"href\": \"\", \"label\": \"لا توجد ملفات بعد\" }" > pdfs/latest_homework.json
+          fi
+
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add pdfs/*/index.html
-          git commit -m "Auto-generate PDF indexes (sorted, safe)" || echo "No changes"
+          git add pdfs/*/index.html pdfs/latest_homework.json
+          git commit -m "Auto-generate PDF indexes and latest homework JSON" || echo "No changes"
           git push
