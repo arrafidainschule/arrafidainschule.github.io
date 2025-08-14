@@ -18,4 +18,21 @@ document.querySelectorAll('.social-icons img').forEach(img => {
   });
 });
 
+// Neuste Hausaufgabe
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("latest-homework");
 
+  fetch("pdfs/latest_homework.json")
+    .then(response => response.json())
+    .then(data => {
+      if (data.href) {
+        container.innerHTML = `<p><a href="${data.href}" target="_blank">${data.label}</a></p>`;
+      } else {
+        container.innerHTML = `<p>${data.label}</p>`;
+      }
+    })
+    .catch(err => {
+      console.error("Fehler beim Laden der neuesten Hausaufgabe:", err);
+      container.innerHTML = "<p>حدث خطأ أثناء تحميل الواجب البيتي.</p>";
+    });
+});
