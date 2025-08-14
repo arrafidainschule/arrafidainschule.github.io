@@ -198,4 +198,28 @@ footer {
   font-weight: bold;
 }
 
+/* Phone-Symbol auf Kontakt-Seite */
+.phone-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.phone-list li {
+  margin: 8px 0;
+}
+
+.phone-list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Abstand zwischen Nummer und Icon */
+  text-decoration: none;
+  color: inherit;
+}
+
+.phone-list svg {
+  flex-shrink: 0;
+}
+
+
 
