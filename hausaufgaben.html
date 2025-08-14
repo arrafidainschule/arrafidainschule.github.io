@@ -1,19 +1,131 @@
 <!DOCTYPE html>
-<html lang='ar' dir='rtl'>
+<html lang="ar" dir="rtl">
 <head>
-<meta charset='UTF-8' />
-<meta name='viewport' content='width=device-width, initial-scale=1' />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>الواجبات البيتية - مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة</title>
-<link rel='stylesheet' href='style.css' />
-<link rel='icon' type='image/png' sizes='32x32' href='logo/favicon-32x32.png'>
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="logo/favicon-32x32.png">
 </head>
 <body>
+
+<!-- ===== HEADER START ===== -->
 <header>
-  <div class='logo' onclick="window.location.href='index.html'">مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة <img src='logo/ArraRundLogo.png' alt='Logo' class='school-logo' /></div>
+  <div class="logo" onclick="window.location.href='index.html'">
+    مَدْرَسَةُ الرَّافِدَينِ العَرَبِيَّة
+    <img src="logo/ArraRundLogo.png" alt="Logo" class="school-logo" />
+  </div>
+  <nav>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <ul id="menu">
+      <li><a href="index.html">الصفحة الرئيسية</a></li>
+      <li><a href="hausaufgaben.html">الواجبات البيتية</a></li>
+      <li><a href="about.html">عن المدرسة</a></li>
+      <li><a href="bilder.html">معرض الصور</a></li>
+      <li><a href="ads.html">إعلانات</a></li>
+      <li><a href="kontakt.html">اتصل بنا</a></li>
+    </ul>
+  </nav>
 </header>
+<!-- ===== HEADER END ===== -->
+
+
 <main>
-  <h1>أحدث واجب بيتي</h1>
-  <p>لا توجد ملفات بعد.</p>
+  <h1>الواجبات البيتية</h1>
+  
+ <h2>أحدث واجب بيتي</h2>
+  <div id="latest-homework">
+    <!-- Dieser Bereich wird vom Workflow ersetzt -->
+    %LATEST_HOMEWORK%
+  </div>
+
+  <h2>الواجبات البيتية السابقة</h2>
+  <div class="folder-container">
+
+  <!-- 
+    <div class="folder">
+      <a href="pdfs/YYYY-YYYY/index.html">
+        <!-- Ordner-Icon SVG 
+        <svg fill="#11470b" version="1.1" xmlns="http://www.w3.org/2000/svg"
+          width="150px" height="150px" viewBox="-179.6 -179.6 887.44 887.44">
+          <g><path d="M528.242,83.013c0-4.514-3.658-8.17-8.172-8.17H245.057c-4.513,0-10.841-2.497-14.14-5.579l-29.581-27.638
+            c-3.295-3.082-9.626-5.579-14.14-5.579H8.17c-4.514,0-8.17,3.657-8.17,8.17v116.243c2.836-1.154,5.933-1.802,9.18-1.802h509.885
+            c3.246,0,6.344,0.648,9.18,1.802V83.013H528.242z"></path>
+            <path d="M9.18,492.196h509.885c5.07,0,9.18-4.11,9.18-9.181v-86.193V183.136c0-5.07-4.109-9.18-9.18-9.18H9.18
+            c-5.07,0-9.18,4.109-9.18,9.18v213.687v86.193C0,488.086,4.109,492.196,9.18,492.196z"></path>
+          </g>
+        </svg>
+        <div class="folder-label">YYYY-YYYY</div>
+      </a>
+    </div>
+    -->
+    
+    <div class="folder">
+      <a href="pdfs/2026-2025/index.html">
+        <!-- Ordner-Icon SVG -->
+        <svg fill="#11470b" version="1.1" xmlns="http://www.w3.org/2000/svg"
+          width="150px" height="150px" viewBox="-179.6 -179.6 887.44 887.44">
+          <g><path d="M528.242,83.013c0-4.514-3.658-8.17-8.172-8.17H245.057c-4.513,0-10.841-2.497-14.14-5.579l-29.581-27.638
+            c-3.295-3.082-9.626-5.579-14.14-5.579H8.17c-4.514,0-8.17,3.657-8.17,8.17v116.243c2.836-1.154,5.933-1.802,9.18-1.802h509.885
+            c3.246,0,6.344,0.648,9.18,1.802V83.013H528.242z"></path>
+            <path d="M9.18,492.196h509.885c5.07,0,9.18-4.11,9.18-9.181v-86.193V183.136c0-5.07-4.109-9.18-9.18-9.18H9.18
+            c-5.07,0-9.18,4.109-9.18,9.18v213.687v86.193C0,488.086,4.109,492.196,9.18,492.196z"></path>
+          </g>
+        </svg>
+        <div class="folder-label">2026-2025</div>
+      </a>
+    </div>
+
+    <div class="folder">
+      <a href="pdfs/2025-2024/index.html">
+        <!-- Gleicher SVG wie oben -->
+        <svg fill="#11470b" version="1.1" xmlns="http://www.w3.org/2000/svg"
+          width="150px" height="150px" viewBox="-179.6 -179.6 887.44 887.44">
+          <g><path d="M528.242,83.013c0-4.514-3.658-8.17-8.172-8.17H245.057c-4.513,0-10.841-2.497-14.14-5.579l-29.581-27.638
+            c-3.295-3.082-9.626-5.579-14.14-5.579H8.17c-4.514,0-8.17,3.657-8.17,8.17v116.243c2.836-1.154,5.933-1.802,9.18-1.802h509.885
+            c3.246,0,6.344,0.648,9.18,1.802V83.013H528.242z"></path>
+            <path d="M9.18,492.196h509.885c5.07,0,9.18-4.11,9.18-9.181v-86.193V183.136c0-5.07-4.109-9.18-9.18-9.18H9.18
+            c-5.07,0-9.18,4.109-9.18,9.18v213.687v86.193C0,488.086,4.109,492.196,9.18,492.196z"></path>
+          </g>
+        </svg>
+        <div class="folder-label">2025-2024</div>
+      </a>
+    </div>
+
+    <div class="folder">
+      <a href="pdfs/2024-2023/index.html">
+        <!-- Gleicher SVG wie oben -->
+        <svg fill="#11470b" version="1.1" xmlns="http://www.w3.org/2000/svg"
+          width="150px" height="150px" viewBox="-179.6 -179.6 887.44 887.44">
+          <g><path d="M528.242,83.013c0-4.514-3.658-8.17-8.172-8.17H245.057c-4.513,0-10.841-2.497-14.14-5.579l-29.581-27.638
+            c-3.295-3.082-9.626-5.579-14.14-5.579H8.17c-4.514,0-8.17,3.657-8.17,8.17v116.243c2.836-1.154,5.933-1.802,9.18-1.802h509.885
+            c3.246,0,6.344,0.648,9.18,1.802V83.013H528.242z"></path>
+            <path d="M9.18,492.196h509.885c5.07,0,9.18-4.11,9.18-9.181v-86.193V183.136c0-5.07-4.109-9.18-9.18-9.18H9.18
+            c-5.07,0-9.18,4.109-9.18,9.18v213.687v86.193C0,488.086,4.109,492.196,9.18,492.196z"></path>
+          </g>
+        </svg>
+        <div class="folder-label">2024-2023</div>
+      </a>
+    </div>
+  </div>
 </main>
-<footer></footer>
-</body></html>
+
+<!-- ===== FOOTER START ===== -->
+<footer>
+  <div class="social-icons">
+  <a href="https://www.facebook.com/profile.php?id=100063760595206#" target="_blank" aria-label="Facebook">
+      <img src="logo/facebook-svgrepo-com.svg" data-hover="logo/facebook-svgrepo-com-gold.svg" alt="Facebook" width="24" height="24">
+    </a>
+  <a href="https://www.instagram.com/arrafidain_kulturverein_e.v._/" target="_blank" aria-label="Instagram">
+      <img src="logo/instagram-svgrepo-com.svg" data-hover="logo/instagram-svgrepo-com-gold.svg" alt="Instagram" width="24" height="24">
+    </a>
+  <a href="https://t.me/arrafidainschule" target="_blank" aria-label="Telegram">
+      <img src="logo/telegram-svgrepo-com.svg" data-hover="logo/telegram-svgrepo-com-gold.svg" alt="Telegram" width="24" height="24">
+    </a>
+</div>
+</footer>
+<!-- ===== FOOTER END ===== -->
+
+<script src="script.js"></script>
+</body>
+</html>
