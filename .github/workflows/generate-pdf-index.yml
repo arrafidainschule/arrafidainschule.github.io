@@ -91,7 +91,7 @@ jobs:
                 echo "    <li><a href=\"$href\" target=\"_blank\">$label</a></li>" >> "$out"
               done
             else
-              echo "    <li>لا توجد ملفات بعد</li>" >> "$out"
+              echo "    <p>لا توجد ملفات بعد.</p>" >> "$out"
             fi
             rm -f "$tmp"
 
