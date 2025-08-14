@@ -113,9 +113,9 @@ jobs:
           # JSON-Datei für neueste Hausaufgabe schreiben
             mkdir -p hausaufgaben
             if [[ -n "$latest_href" ]]; then
-              echo "{ \"href\": \"$latest_href\", \"label\": \"$latest_label\" }" > hausaufgaben/latest_homework.json
+              echo "{ \"href\": \"$latest_href\", \"label\": \"$latest_label\" }" > pdfs/latest_homework.json
             else
-              echo "{ \"href\": \"\", \"label\": \"لا توجد ملفات بعد\" }" > hausaufgaben/latest_homework.json
+              echo "{ \"href\": \"\", \"label\": \"لا توجد ملفات بعد\" }" > pdfs/latest_homework.json
             fi
           
       - name: Commit and push changes
