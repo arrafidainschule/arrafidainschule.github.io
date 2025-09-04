@@ -9,6 +9,11 @@ body {
   flex-direction: column;
 }
 
+/* HTML und Body nehmen volle Höhe ein */
+html, body {
+  height: 100%;
+}
+
 /* Container zentriert und mit Max-Breite */
 .container {
   max-width: 1200px;
