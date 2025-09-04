@@ -5,6 +5,8 @@ body {
   direction: rtl;
   background-color: #f9f9f9;
   color: #222;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Container zentriert und mit Max-Breite */
