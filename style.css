@@ -113,6 +113,7 @@ main {
   box-sizing: border-box;
   line-height: 1.6;
   text-align: right;
+  flex: 1;
 }
 
 /* Footer Styling */
@@ -122,6 +123,7 @@ footer {
   padding: 15px 20px;
   text-align: center;
   box-sizing: border-box;
+  margin-top: auto;
 }
 
 /* Responsive: Menü für kleine Bildschirme */
