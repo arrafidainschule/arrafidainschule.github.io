@@ -11,6 +11,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// footer
+document.addEventListener("DOMContentLoaded", () => {
+  const footerPlaceholder = document.getElementById("footer-placeholder");
+  if (footerPlaceholder) {
+    fetch("structure/footer.html")
+      .then(response => response.text())
+      .then(data => {
+        footerPlaceholder.innerHTML = data;
+      })
+      .catch(err => console.error("footer konnte nicht geladen werden:", err));
+  }
+});
+
 // Hamburger-Menu
 function toggleMenu() {
   const menu = document.getElementById("menu");
