@@ -155,20 +155,20 @@ footer {
   }
 }
 /* ICONs im footer */
-.social-icons img {
+.icon {
+  fill: #000; /* Standardfarbe */
   transition: transform 0.3s ease, filter 0.3s ease;
   cursor: pointer;
   padding: 5px;
 }
 
+.icon:hover {
+  fill: #cfa93f; /* Hover-Farbe */
+}
+
 .social-icons img:hover {
   transform: scale(1.15);
   filter: brightness(1.2);
-}
-
-.social-icons a {
-  display: inline-block;
-  line-height: 0;
 }
 
   /* Folder fur HA */
