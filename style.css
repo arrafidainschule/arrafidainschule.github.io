@@ -157,10 +157,13 @@ footer {
 /* ICONs im footer */
 .icon {
   fill: #ffffff; /* Standardfarbe */
-  transition: transform 0.3s ease;
+  ransition: transform 0.3s ease, fill 0.3s ease;
+  cursor: pointer;
+  padding: 5px;
 }
 
 .icon:hover {
+  transform: scale(1.15);
   fill: #cfa93f; /* Hover-Farbe */
 }
 
