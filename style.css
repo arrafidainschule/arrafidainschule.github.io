@@ -156,7 +156,7 @@ footer {
 }
 /* ICONs im footer */
 .icon {
-  fill: #000; /* Standardfarbe */
+  fill: #ffffff; /* Standardfarbe */
   transition: transform 0.3s ease, filter 0.3s ease;
   cursor: pointer;
   padding: 5px;
