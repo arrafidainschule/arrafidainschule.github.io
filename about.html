@@ -45,65 +45,74 @@ async function getRoute() {
   }
 }
 
-getRoute();
-</script>
-<html>
-  <head>
-    <title>Simple HERE Map</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://js.api.here.com/v3/3.1/mapsjs-ui.css"
-    />
-    <style>
-      html,
-      body {
-        border: 0;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100vh;
-        width: 100vw;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
-    <script>
-      const platform = new H.service.Platform({ apikey: "HERE-API-KEY" });
-      const defaultLayers = platform.createDefaultLayers();
-      const map = new H.Map(
-        document.getElementById("map"),
-        defaultLayers.vector.normal.map,
-        {
-          center: { lat: 37.773972, lng: -122.431297 },
-          zoom: 13,
-          pixelRatio: window.devicePixelRatio || 1,
-        }
-      );
-      window.addEventListener("resize", () => map.getViewPort().resize());
-      const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
-      const ui = H.ui.UI.createDefault(map, defaultLayers);
+  <div id="mapContainer" style="width: 100%; height: 500px;"></div>
 
-      //Begin geocoding
-      const searchText = "1070 Lombard Street, San Francisco";
-      const geocoder = platform.getSearchService();
-      geocoder.geocode({ searchText }, (result) => {
-        const location =
-          result.Response.View[0].Result[0].Location.DisplayPosition;
-        const { Latitude: lat, Longitude: lng } = location;
-        const marker = new H.map.Marker({ lat, lng });
-        map.addObject(marker);
+<script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+<link rel="stylesheet" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+
+<script>
+  const apiKey = "funEmaMs8LYnXQgL5gn6FGNEzoGHUkOFSnHJP3tQkYw"; // <-- deinen API-Key hier eintragen
+
+  // Plattform initialisieren
+  const platform = new H.service.Platform({ apikey: apiKey });
+  const defaultLayers = platform.createDefaultLayers();
+
+  // Karte erstellen
+  const map = new H.Map(
+    document.getElementById("mapContainer"),
+    defaultLayers.vector.normal.map,
+    {
+      zoom: 14,
+      center: { lat: 52.5308, lng: 13.3847 }
+    }
+  );
+
+  // Events aktivieren (Zoom, Drag)
+  const mapEvents = new H.mapevents.MapEvents(map);
+  new H.mapevents.Behavior(mapEvents);
+
+  // UI hinzufügen (Buttons etc.)
+  H.ui.UI.createDefault(map, defaultLayers);
+
+  // Routing-Service abrufen
+  const router = platform.getRoutingService(null, 8);
+
+  const routeRequestParams = {
+    routingMode: "fast",
+    transportMode: "car",
+    origin: "52.5308,13.3847",       // Startpunkt (Lat,Lng)
+    destination: "52.5264,13.3686",  // Zielpunkt (Lat,Lng)
+    return: "polyline"
+  };
+
+  router.calculateRoute(routeRequestParams, (result) => {
+    if (result.routes.length) {
+      result.routes[0].sections.forEach((section) => {
+        // Route auf der Karte zeichnen
+        const linestring = H.geo.LineString.fromFlexiblePolyline(section.polyline);
+        const routeLine = new H.map.Polyline(linestring, {
+          style: { strokeColor: "blue", lineWidth: 4 }
+        });
+        map.addObject(routeLine);
+
+        // Marker für Start & Ziel
+        map.addObject(new H.map.Marker(section.departure.place.location));
+        map.addObject(new H.map.Marker(section.arrival.place.location));
+
+        // Karte auf Route zoomen
+        map.getViewModel().setLookAtData({bounds: routeLine.getBoundingBox()});
       });
-    </script>
-  </body>
-</html>
+    }
+  }, (error) => {
+    console.error(error);
+    alert("Route konnte nicht berechnet werden.");
+  });
+</script>
 
+  
   <h1>عن المدرسة</h1>
   <p>مدرستنا تأسست عام ٢٠٠٥ في مدينة شتوتغارت بهدف تعليم الناشئة اللغة العربية وتعريفهم بثقافة اللغة وجمالياتها.</p>
 </main>
