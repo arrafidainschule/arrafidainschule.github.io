@@ -17,36 +17,14 @@
 <main>
   <h1>موقع المدرسة</h1>
   <!-- Here WeGo Karte einbetten -->
-  <div id="route-result"></div>
+ <!-- Eingabe für Startadresse -->
+<input id="start" type="text" placeholder="Ihre Startadresse eingeben" style="width:300px; padding:5px; margin:10px;" />
+<button onclick="calculateRoute()">Route anzeigen</button>
 
-<script>
-async function getRoute() {
-  const apiKey = 'funEmaMs8LYnXQgL5gn6FGNEzoGHUkOFSnHJP3tQkYw'; // Hier deinen API-Key einfügen
-  const origin = '52.5308,13.3847';
-  const destination = '52.5264,13.3686';
+<!-- Karte -->
+<div id="mapContainer" style="width: 100%; height: 500px; margin-top:10px;"></div>
 
-  const url = `https://router.hereapi.com/v8/routes?transportMode=car&origin=${origin}&destination=${destination}&return=summary&apiKey=${apiKey}`;
-
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('Fehler bei der API-Anfrage');
-
-    const data = await response.json();
-
-    // Beispiel: Zeige die Route zusammengefasst an
-    const summary = data.routes[0].sections[0].summary;
-    document.getElementById('route-result').innerHTML = `
-      <p>Distanz: ${summary.length / 1000} km</p>
-      <p>Dauer: ${Math.round(summary.duration / 60)} Minuten</p>
-    `;
-  } catch (error) {
-    console.error(error);
-    document.getElementById('route-result').innerText = 'Route konnte nicht geladen werden.';
-  }
-}
-
-  <div id="mapContainer" style="width: 100%; height: 500px;"></div>
-
+<!-- HERE Maps Bibliotheken -->
 <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
 <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
 <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
@@ -54,62 +32,68 @@ async function getRoute() {
 <link rel="stylesheet" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
 
 <script>
-  const apiKey = "funEmaMs8LYnXQgL5gn6FGNEzoGHUkOFSnHJP3tQkYw"; // <-- deinen API-Key hier eintragen
-
-  // Plattform initialisieren
+  const apiKey = "funEmaMs8LYnXQgL5gn6FGNEzoGHUkOFSnHJP3tQkYw"; // <-- Hier deinen HERE API-Key einsetzen
   const platform = new H.service.Platform({ apikey: apiKey });
   const defaultLayers = platform.createDefaultLayers();
 
-  // Karte erstellen
+  // Karte vorbereiten (Schule als Mittelpunkt)
   const map = new H.Map(
     document.getElementById("mapContainer"),
     defaultLayers.vector.normal.map,
-    {
-      zoom: 14,
-      center: { lat: 52.5308, lng: 13.3847 }
-    }
+    { center: { lat: 48.83101, lng: 9.19618 }, zoom: 13 }
   );
 
-  // Events aktivieren (Zoom, Drag)
-  const mapEvents = new H.mapevents.MapEvents(map);
-  new H.mapevents.Behavior(mapEvents);
-
-  // UI hinzufügen (Buttons etc.)
+  // Interaktionen aktivieren
+  const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
   H.ui.UI.createDefault(map, defaultLayers);
 
-  // Routing-Service abrufen
   const router = platform.getRoutingService(null, 8);
+  const searchService = platform.getSearchService();
 
-  const routeRequestParams = {
-    routingMode: "fast",
-    transportMode: "car",
-    origin: "52.5308,13.3847",       // Startpunkt (Lat,Lng)
-    destination: "52.5264,13.3686",  // Zielpunkt (Lat,Lng)
-    return: "polyline"
-  };
+  // Zielort: deine Schule
+  const schoolCoords = { lat: 48.83101, lng: 9.19618 };
 
-  router.calculateRoute(routeRequestParams, (result) => {
-    if (result.routes.length) {
-      result.routes[0].sections.forEach((section) => {
-        // Route auf der Karte zeichnen
-        const linestring = H.geo.LineString.fromFlexiblePolyline(section.polyline);
-        const routeLine = new H.map.Polyline(linestring, {
-          style: { strokeColor: "blue", lineWidth: 4 }
-        });
-        map.addObject(routeLine);
+  let routeLine;
 
-        // Marker für Start & Ziel
-        map.addObject(new H.map.Marker(section.departure.place.location));
-        map.addObject(new H.map.Marker(section.arrival.place.location));
+  function calculateRoute() {
+    const query = document.getElementById("start").value;
 
-        // Karte auf Route zoomen
-        map.getViewModel().setLookAtData({bounds: routeLine.getBoundingBox()});
-      });
-    }
-  }, (error) => {
-    console.error(error);
-    alert("Route konnte nicht berechnet werden.");
-  });
+    // Adresse → Koordinaten suchen
+    searchService.geocode({ q: query }, (result) => {
+      if (result.items.length > 0) {
+        const startCoords = result.items[0].position;
+
+        const routeParams = {
+          transportMode: "car",
+          origin: `${startCoords.lat},${startCoords.lng}`,
+          destination: `${schoolCoords.lat},${schoolCoords.lng}`,
+          return: "polyline,summary"
+        };
+
+        router.calculateRoute(routeParams, (r) => {
+          if (r.routes.length) {
+            if (routeLine) map.removeObject(routeLine);
+
+            const section = r.routes[0].sections[0];
+            const linestring = H.geo.LineString.fromFlexiblePolyline(section.polyline);
+            routeLine = new H.map.Polyline(linestring, { style: { strokeColor: "blue", lineWidth: 4 } });
+
+            // Marker setzen
+            const startMarker = new H.map.Marker(startCoords);
+            const destMarker = new H.map.Marker(schoolCoords);
+
+            map.removeObjects(map.getObjects());
+            map.addObjects([routeLine, startMarker, destMarker]);
+
+            // Auf Route zoomen
+            map.getViewModel().setLookAtData({ bounds: routeLine.getBoundingBox() });
+          }
+        }, alert);
+      } else {
+        alert("Adresse nicht gefunden.");
+      }
+    }, alert);
+  }
 </script>
 
   
