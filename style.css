@@ -231,5 +231,12 @@ footer {
   flex-shrink: 0;
 }
 
+#mapContainer {
+  width: 100%;       /* ganze Breite */
+  height: 500px;     /* feste Höhe */
+  margin: 20px 0;    /* Abstand oben/unten */
+  border-radius: 10px; /* optional: abgerundete Ecken */
+  overflow: hidden;   /* verhindert Scrollbalken */
+}
 
 
