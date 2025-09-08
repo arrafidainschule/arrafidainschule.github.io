@@ -17,15 +17,36 @@
 <main>
   <h1>موقع المدرسة</h1>
   <!-- Here WeGo Karte einbetten -->
-  <iframe
-    width="100%"
-    height="450"
-    src="https://share.here.com/l/48.83130873125395,9.1958228055411,Tapachstra%C3%9Fe%2050?z=19&t=normal"
-    style="border:0;"
-    allowfullscreen
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
+  <div id="route-result"></div>
+
+<script>
+async function getRoute() {
+  const apiKey = 'funEmaMs8LYnXQgL5gn6FGNEzoGHUkOFSnHJP3tQkYw'; // Hier deinen API-Key einfügen
+  const origin = '52.5308,13.3847';
+  const destination = '52.5264,13.3686';
+
+  const url = `https://router.hereapi.com/v8/routes?transportMode=car&origin=${origin}&destination=${destination}&return=summary&apiKey=${apiKey}`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Fehler bei der API-Anfrage');
+
+    const data = await response.json();
+
+    // Beispiel: Zeige die Route zusammengefasst an
+    const summary = data.routes[0].sections[0].summary;
+    document.getElementById('route-result').innerHTML = `
+      <p>Distanz: ${summary.length / 1000} km</p>
+      <p>Dauer: ${Math.round(summary.duration / 60)} Minuten</p>
+    `;
+  } catch (error) {
+    console.error(error);
+    document.getElementById('route-result').innerText = 'Route konnte nicht geladen werden.';
+  }
+}
+
+getRoute();
+</script>
 
   <h1>عن المدرسة</h1>
   <p>مدرستنا تأسست عام ٢٠٠٥ في مدينة شتوتغارت بهدف تعليم الناشئة اللغة العربية وتعريفهم بثقافة اللغة وجمالياتها.</p>
