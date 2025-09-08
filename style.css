@@ -229,10 +229,11 @@ footer {
 
 .phone-list svg {
   flex-shrink: 0;
-}
 
-#mapContainer {
+/* Eingebettete Karten */
+.mapContainer {
   width: 100%;       /* ganze Breite */
+  max-width: 100%;
   height: 500px;     /* feste Höhe */
   margin: 20px 0;    /* Abstand oben/unten */
   border-radius: 10px; /* optional: abgerundete Ecken */
