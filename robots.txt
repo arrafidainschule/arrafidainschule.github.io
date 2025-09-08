@@ -1,0 +1,7 @@
+# Erlaubt allen Suchmaschinen den Zugriff
+User-agent: *
+Allow: /
+#Disallow: /hausaufgaben.html
+
+# Verweist auf die Sitemap
+Sitemap: https://www.arrafidainkulturverein.de/sitemap.xml
