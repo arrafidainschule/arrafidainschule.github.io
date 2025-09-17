@@ -1,6 +1,7 @@
 /* Grundlegende Einstellungen */
 body {
   margin: 0;
+  padding-top: 60px;
   font-family: Arial, sans-serif;
   direction: rtl;
   background-color: #f9f9f9;
@@ -30,7 +31,7 @@ header {
   align-items: center;
   padding: 10px 20px;
   box-sizing: border-box;
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 1000;
 }
