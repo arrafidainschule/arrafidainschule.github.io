@@ -19,10 +19,27 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(response => response.text())
       .then(data => {
         footerPlaceholder.innerHTML = data;
+
+        // Hover-Effekt erst nach dem Einfügen aktivieren
+        footerPlaceholder.querySelectorAll('.social-icons img').forEach(img => {
+          const originalSrc = img.src;
+          const hoverSrc = img.getAttribute('data-hover');
+
+          if (hoverSrc) {
+            img.addEventListener('mouseenter', () => {
+              img.src = hoverSrc;
+            });
+
+            img.addEventListener('mouseleave', () => {
+              img.src = originalSrc;
+            });
+          }
+        });
       })
       .catch(err => console.error("footer konnte nicht geladen werden:", err));
   }
 });
+
 
 // Hamburger-Menu
 function toggleMenu() {
