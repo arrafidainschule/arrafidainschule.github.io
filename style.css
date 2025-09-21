@@ -135,6 +135,7 @@ footer {
   box-sizing: border-box;
   margin-top: auto;
   position: fixed;
+  display: flex;
 }
 
 /* Responsive: Menü für kleine Bildschirme */
