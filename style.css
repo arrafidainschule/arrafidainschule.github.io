@@ -1,7 +1,8 @@
 /* Grundlegende Einstellungen */
 body {
   margin: 0;
-  padding-top: 60px;
+  padding-top: 60px;  	/* Höhe deines Headers */
+  padding-bottom: 70px; /* Höhe deines Footers */
   font-family: Arial, sans-serif;
   direction: rtl;
   background-color: #f9f9f9;
@@ -133,9 +134,13 @@ footer {
   padding: 15px 20px;
   text-align: center;
   box-sizing: border-box;
-  margin-top: auto;
   position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;   /* volle Breite */
   display: flex;
+  justify-content: center; /* Inhalte zentrieren */
+  align-items: center;     /* vertikal mittig */
 }
 
 /* Responsive: Menü für kleine Bildschirme */
