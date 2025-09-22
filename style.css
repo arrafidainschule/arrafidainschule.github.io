@@ -16,13 +16,6 @@ html, body {
   height: 100%;
 }
 
-/* Container zentriert und mit Max-Breite */
-.container {
-  max-width: 10px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
-
 /* Header Styling */
 header {
   background-color: #12470d;
@@ -118,7 +111,7 @@ nav ul#menu li a:hover {
 
 /* Hauptinhalt */
 main {
-  max-width: 1200px;
+  max-width: 2500px;
   margin: 30px auto;
   padding: 0 20px;
   box-sizing: border-box;
@@ -249,5 +242,4 @@ footer {
   border-radius: 10px; /* optional: abgerundete Ecken */
   overflow: hidden;   /* verhindert Scrollbalken */
 }
-
-
+  
