@@ -111,7 +111,7 @@ nav ul#menu li a:hover {
 
 /* Hauptinhalt */
 main {
-  max-width: 2500px;
+  max-width: 1500px;
   width: 100%;
   margin: 30px auto;
   padding: 0 20px;
@@ -145,7 +145,7 @@ footer {
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100%;
+    width: 300px;
     display: none;
   }
 
