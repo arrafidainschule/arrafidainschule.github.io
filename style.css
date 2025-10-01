@@ -2,7 +2,6 @@
 body {
   margin: 0;
   padding-top: 60px;  	/* Höhe deines Headers */
-  padding-bottom: 0px; /* Höhe deines Footers */
   font-family: Arial, sans-serif;
   direction: rtl;
   background-color: #f9f9f9;
