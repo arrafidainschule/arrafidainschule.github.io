@@ -238,7 +238,7 @@ nav ul#menu li a:hover {
 }
 
 /* Allgemeines Styling für alle Bilder */
-.img {
+main img {
   max-width: 100%;
   height: auto;
   display: block;
