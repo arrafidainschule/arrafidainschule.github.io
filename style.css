@@ -235,4 +235,13 @@ nav ul#menu li a:hover {
   border-radius: 10px; /* optional: abgerundete Ecken */
   overflow: hidden;   /* verhindert Scrollbalken */
 }
-  
+
+/* Allgemeines Styling für alle Bilder */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;     /* sorgt für zentrierte Bilder */
+  border-radius: 10px;   /* optionale abgerundete Ecken */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* optionaler Schatten */
+}
