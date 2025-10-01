@@ -150,6 +150,7 @@ nav ul#menu li a:hover {
     color: white;
   }
 }
+
 /* ICONs im footer */
 .social-icons img {
   transition: transform 0.3s ease, filter 0.3s ease;
@@ -237,8 +238,8 @@ nav ul#menu li a:hover {
 }
 
 /* Allgemeines Styling für alle Bilder */
-img {
-  width: 100%;
+.img {
+  max-width: 100%;
   height: auto;
   display: block;
   margin: 20px auto;     /* sorgt für zentrierte Bilder */
