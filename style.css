@@ -240,7 +240,7 @@ nav ul#menu li a:hover {
 /* Allgemeines Styling für alle Bilder */
 img {
   max-width: 100%;
-  height: 500px;
+  height: 500;
   display: block;
   margin: 20px auto;     /* sorgt für zentrierte Bilder */
   border-radius: 10px;   /* optionale abgerundete Ecken */
