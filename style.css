@@ -31,6 +31,27 @@ header {
   z-index: 1000;
 }
 
+/* Hauptinhalt */
+main {
+  max-width: 1000px;
+  width: 100%;
+  margin: 30px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+  text-align: right;
+  flex: 1;
+}
+
+/* Footer Styling */
+footer {
+  background-color: #12470d;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
 /* Logo im Header: Text + Bild */
 .logo {
   cursor: pointer;
@@ -106,27 +127,6 @@ nav ul#menu li a:hover {
   background-color: #c3d48e;
   padding: 10px;
   border-radius: 6px;
-}
-
-/* Hauptinhalt */
-main {
-  max-width: 1000px;
-  width: 100%;
-  margin: 30px auto;
-  padding: 0 20px;
-  box-sizing: border-box;
-  line-height: 1.6;
-  text-align: right;
-  flex: 1;
-}
-
-/* Footer Styling */
-footer {
-  background-color: #12470d;
-  color: white;
-  padding: 15px 20px;
-  text-align: center;
-  box-sizing: border-box;
 }
 
 /* Responsive: Menü für kleine Bildschirme */
