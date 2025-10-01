@@ -8,6 +8,7 @@ body {
   color: #222;
   display: flex;
   flex-direction: column;
+  font-size: 18px; /* Schriftgröße */
 }
 
 /* HTML und Body nehmen volle Höhe ein */
