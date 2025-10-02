@@ -65,7 +65,7 @@ document.querySelectorAll('.social-icons img').forEach(img => {
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("latest-homework");
 
-  fetch("pdfs/latest_homework.json")
+  fetch("pdfs/HA/latest_homework.json")
     .then(response => response.json())
     .then(data => {
       if (data.href) {
