@@ -3,7 +3,7 @@ name: Generate PDF index
 on:
   push:
     paths:
-      - 'pdfs/**.pdf'
+      - 'pdfs/HA/**.pdf'
   workflow_dispatch:
 
 permissions:
@@ -22,7 +22,7 @@ jobs:
           latest_href=""
           latest_label=""
 
-          for dir in pdfs/*/; do
+          for dir in pdfs/HA/*/; do
             year=$(basename "$dir")
             out="$dir/index.html"
 
@@ -119,15 +119,15 @@ jobs:
           # JSON-Datei für neueste Hausaufgabe schreiben
           mkdir -p pdfs
           if [[ -n "$latest_href" ]]; then
-            echo "{ \"href\": \"$latest_href\", \"label\": \"$latest_label\" }" > pdfs/latest_homework.json
+            echo "{ \"href\": \"$latest_href\", \"label\": \"$latest_label\" }" > pdfs/HA/latest_homework.json
           else
-            echo "{ \"href\": \"\", \"label\": \"لا توجد ملفات بعد\" }" > pdfs/latest_homework.json
+            echo "{ \"href\": \"\", \"label\": \"لا توجد ملفات بعد\" }" > pdfs/HA/latest_homework.json
           fi
 
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add pdfs/*/index.html pdfs/latest_homework.json
+          git add pdfs/HA/*/index.html pdfs/HA/latest_homework.json
           git commit -m "Auto-generate PDF indexes and latest homework JSON" || echo "No changes"
           git push
