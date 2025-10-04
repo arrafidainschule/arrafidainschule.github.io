@@ -81,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* Dropdown Menu */
-<script>
 document.getElementById("toggle-homework").addEventListener("click", function() {
   const folders = document.getElementById("homework-folders");
   const visible = folders.style.display === "block";
@@ -89,4 +88,3 @@ document.getElementById("toggle-homework").addEventListener("click", function() 
   folders.style.display = visible ? "none" : "block";
   this.textContent = visible ? "الواجبات البيتية السابقة ▼" : "الواجبات البيتية السابقة ▲";
 });
-</script>
