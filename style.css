@@ -187,7 +187,7 @@ nav ul#menu li a:hover {
   transform-origin: center; /* Mittelpunkt als Drehachse */
 }
 /* Container für den Inhalt (Auf-/Zuklappen animieren) */
-.collapsible + .content {
+.content {
   max-height: 0;            /* zugeklappt */
   overflow: hidden;
   transition: max-height 0.6s ease-in-out; /* 👈 hier die Animation */
