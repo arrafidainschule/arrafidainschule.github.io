@@ -169,6 +169,27 @@ nav ul#menu li a:hover {
   line-height: 0;
 }
 
+/* Dropdown Menu */
+.collapsible {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;  
+}
+.collapsible .arrow {  /* Pfeil nach rechts (Standard) */
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 8px solid #11470b;
+  transition: transform 0.4s ease-in-out; /* 👈 sorgt für sanfte Drehung */
+  transform-origin: center; /* Mittelpunkt als Drehachse */
+}
+.collapsible.active .arrow {  /* Wenn aktiv – Pfeil zeigt nach unten */
+  transform: rotate(-90deg); /* sanft gedreht */
+}
+
   /* Folder fur HA */
   .folder-container {
   display: flex;
