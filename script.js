@@ -79,3 +79,14 @@ document.addEventListener("DOMContentLoaded", () => {
       container.innerHTML = "<p>حدث خطأ أثناء تحميل الواجب البيتي.</p>";
     });
 });
+
+/* Dropdown Menu */
+<script>
+document.getElementById("toggle-homework").addEventListener("click", function() {
+  const folders = document.getElementById("homework-folders");
+  const visible = folders.style.display === "block";
+  
+  folders.style.display = visible ? "none" : "block";
+  this.textContent = visible ? "الواجبات البيتية السابقة ▼" : "الواجبات البيتية السابقة ▲";
+});
+</script>
