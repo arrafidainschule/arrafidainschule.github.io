@@ -83,8 +83,12 @@ document.addEventListener("DOMContentLoaded", () => {
 /* Dropdown Menu */
 document.getElementById("toggle-homework").addEventListener("click", function() {
   const folders = document.getElementById("homework-folders");
-  const visible = folders.style.display === "block";
-  
-  folders.style.display = visible ? "none" : "block";
-  this.textContent = visible ? "الواجبات البيتية السابقة ▼" : "الواجبات البيتية السابقة ▲";
+  const isVisible = folders.style.display === "block";
+  const arrow = this.querySelector(".arrow");
+
+  // Sichtbarkeit umschalten
+  folders.style.display = isVisible ? "none" : "block";
+
+  // Klasse für Animation setzen
+  this.classList.toggle("active", !isVisible);
 });
