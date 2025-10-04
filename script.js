@@ -81,14 +81,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* Dropdown Menu */
-document.getElementById("toggle-homework").addEventListener("click", function() {
-  const folders = document.getElementById("homework-folders");
-  const isVisible = folders.style.display === "block";
-  const arrow = this.querySelector(".arrow");
+document.addEventListener("DOMContentLoaded", function() {
+  const collapsible = document.querySelector(".collapsible");
+  const content = document.querySelector(".content");
 
-  // Sichtbarkeit umschalten
-  folders.style.display = isVisible ? "none" : "block";
-
-  // Klasse für Animation setzen
-  this.classList.toggle("active", !isVisible);
+  collapsible.addEventListener("click", function() {
+    const isOpen = content.classList.toggle("open");
+    collapsible.classList.toggle("active", isOpen);
+  });
 });
