@@ -177,7 +177,10 @@ nav ul#menu li a:hover {
   justify-content: flex-start; /* wichtig für RTL, Text rechtsbündig */
   gap: 10px;
   user-select: none;
-  font-weight: bold;
+  background-color: #e8f3e4;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease-in-out; /* sanfter Übergang */
 }
 .collapsible .arrow {  /* Pfeil nach rechts (Standard) */
   width: 0;
