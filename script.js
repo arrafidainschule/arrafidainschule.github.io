@@ -82,11 +82,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* Dropdown Menu */
 document.addEventListener("DOMContentLoaded", function() {
-  const collapsible = document.querySelector(".collapsible");
-  const content = document.querySelector(".content");
+  // Alle Dropdown-Buttons auswählen
+  const collapsibles = document.querySelectorAll(".collapsible");
 
-  collapsible.addEventListener("click", function() {
-    const isOpen = content.classList.toggle("open");
-    collapsible.classList.toggle("active", isOpen);
+  collapsibles.forEach(function(collapsible) {
+    // Das unmittelbar folgende .content-Element finden
+    const content = collapsible.nextElementSibling;
+
+    // Klick-Ereignis für jedes Dropdown
+    collapsible.addEventListener("click", function() {
+      const isOpen = content.classList.toggle("open");
+      collapsible.classList.toggle("active", isOpen);
+    });
   });
 });
