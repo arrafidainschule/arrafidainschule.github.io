@@ -184,7 +184,7 @@ nav ul#menu li a:hover {
   height: 0;
   border-top: 6px solid transparent;
   border-bottom: 6px solid transparent;
-  border-left: 8px solid #11470b;
+  border-right: 8px solid #11470b;
   transition: transform 0.4s ease-in-out; /* 👈 sorgt für sanfte Drehung */
   transform-origin: center; /* Mittelpunkt als Drehachse */
 }
@@ -194,7 +194,7 @@ nav ul#menu li a:hover {
   transition: max-height 0.6s ease-in-out; /* 👈 hier die Animation */
 }
 .collapsible.active .arrow {  /* Wenn aktiv – Pfeil zeigt nach unten */
-  transform: rotate(90deg); /* sanft gedreht */
+  transform: rotate(-90deg); /* sanft gedreht */
 }
 .content.open {  /* Offen = sichtbar mit Animation */
   max-height: 1000px; /* genug Platz, kannst du anpassen */
