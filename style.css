@@ -205,7 +205,6 @@ nav ul#menu li a:hover {
 }
 .collapsible.active .arrow {  /* Wenn aktiv – Pfeil zeigt nach unten */
   transform: rotate(-90deg); /* sanft gedreht */
-  background-color: #C3D48E;  /* dunkleres Grün beim Öffnen */
 }
 .content.open {  /* Offen = sichtbar mit Animation */
   max-height: 1000px; /* genug Platz, kannst du anpassen */
