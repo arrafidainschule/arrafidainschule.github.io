@@ -284,8 +284,8 @@ nav ul#menu li a:hover {
 
 /* Responsiv: eine Spalte auf kleinen Bildschirmen */
 @media (max-width: 768px) {
-  .contact-box {
-    flex: 1 1 100%;
+  .contact-grid {
+    flex-wrap: wrap;
   }
 }
 
