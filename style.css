@@ -242,7 +242,7 @@ nav ul#menu li a:hover {
 /* Kontakt-Grid */
 .contact-grid {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
   align-items: stretch; /* alle Boxen gleich hoch */
@@ -254,7 +254,7 @@ nav ul#menu li a:hover {
   background-color: #E6F0D6;
   border-radius: 10px;
   padding: 15px 20px;
-  flex: 1 1 40%; /* zwei Spalten nebeneinander */
+  flex: 1 1 calc(50% - 20px); /* zwei Spalten nebeneinander */
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   min-height: 250px; /* feste Mindesthöhe, damit sie gleich wirken */
 }
