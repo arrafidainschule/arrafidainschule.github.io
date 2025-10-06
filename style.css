@@ -247,10 +247,8 @@ nav ul#menu li a:hover {
   gap: 20px;
   align-items: stretch; /* alle Boxen gleich hoch */
   margin: 40px 0;
-  direction: ltr;
 }
 .contact-box {
-  flex-direction: row-reverse;
   display: flex;
   align-items: center;
   background-color: #E6F0D6;
