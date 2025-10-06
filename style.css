@@ -241,7 +241,7 @@ nav ul#menu li a:hover {
 
 /* Kontakt-Grid */
 .contact-grid {
-  
+  display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 20px;
