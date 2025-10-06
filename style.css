@@ -310,7 +310,7 @@ nav ul#menu li a:hover {
 }
 .phone-list svg {
   flex-shrink: 0;
-}
+} 
 
 /* Eingebettete Karten */
 .mapContainer {
