@@ -239,14 +239,14 @@ nav ul#menu li a:hover {
   font-weight: bold;
 }
 
-/* Kontakt-Grid */
-.contact-grid {
+/* Grune Box mit Icon für wichtige Inhalte */
+.greenbox-grid {
   display: flex;
   gap: 20px;
   align-items: stretch; /* alle Boxen gleich hoch */
   margin: 40px 0;
 }
-.contact-box {
+.greenbox-box {
   display: flex;
   align-items: center;
   background-color: #E6F0D6;
@@ -256,35 +256,35 @@ nav ul#menu li a:hover {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   min-height: 250px; /* feste Mindesthöhe, damit sie gleich wirken */
 }
-.contact-icon {
+.greenbox-icon {
   width: 80px;
   height: 80px;
   margin-right: 20px;
 }
-.contact-text {
+.greenbox-text {
   flex: 1;
   margin-right: 20px; /* bei RTL ist das der Abstand zwischen Icon und Text */
 }
-.contact-text h3 {
+.greenbox-text h3 {
   color: #12470D;
   margin: 0 0 10px 0;
 }
-.contact-text p {
+.greenbox-text p {
   margin: 5px 0;
   color: #12470D;
 }
-.contact-text a {
+.greenbox-text a {
   color: #12470D;
   font-weight: bold;
   text-decoration: none;
 }
-.contact-text a:hover {
+.greenbox-text a:hover {
   color: #CFA93F;
 }
 
 /* Responsiv: eine Spalte auf kleinen Bildschirmen */
 @media (max-width: 768px) {
-  .contact-grid {
+  .greenbox-grid {
     flex-wrap: wrap;
   }
 }
